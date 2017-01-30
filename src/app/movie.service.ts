@@ -10,8 +10,9 @@ export class MovieService {
   constructor(private http: Http) { }
 
   getTopMovies() {
-    return this.http.get('api call')
+    return this.http.get("https://api.themoviedb.org/3/movie/popular?api_key=" + movieKey.key + "&language=en-US&page=1")
     .map(res => {
+      console.log(res);
       return <any[]> res.json();
     });
   }
