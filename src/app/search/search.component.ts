@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
  }
 
  movieActive() {
-   if (this.searchedCategory === 'Movie') {
+   if (this.searchedCategory === 'movie') {
      return 'active';
    } else {
      return 'inactive';
@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
  }
 
  tvActive() {
-   if (this.searchedCategory === 'TV') {
+   if (this.searchedCategory === 'show') {
      return 'active';
    } else {
      return 'inactive';
