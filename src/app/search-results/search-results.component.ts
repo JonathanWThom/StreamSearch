@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MovieService } from '../movie.service';
 
 @Component({
@@ -10,10 +10,22 @@ import { MovieService } from '../movie.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  constructor() { }
+  category: string;
+  term: string;
+  itemsToDisplay;
+
+  constructor(private route: ActivatedRoute, private ms: MovieService) { }
 
   ngOnInit() {
-    
+    this.route.params.forEach((urlParameters) => {
+      this.category = urlParameters['category'];
+      this.term = urlParameters['term'];
+    });
+    this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
+      this.itemsToDisplay = x;
+      console.log(this.itemsToDisplay);
+    });
+
   }
 
 }
