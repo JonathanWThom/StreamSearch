@@ -12,7 +12,8 @@ export class SearchResultsComponent implements OnInit {
 
   category: string;
   term: string;
-  itemsToDisplay;
+  itemsToDisplay = [];
+  apiResults;
 
   constructor(private route: ActivatedRoute, private ms: MovieService) { }
 
@@ -22,7 +23,8 @@ export class SearchResultsComponent implements OnInit {
       this.term = urlParameters['term'];
     });
     this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
-      this.itemsToDisplay = x;
+      this.apiResults = x;
+      this.itemsToDisplay = this.apiResults.results;
       console.log(this.itemsToDisplay);
     });
 
