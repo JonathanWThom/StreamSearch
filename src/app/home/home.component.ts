@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
+import { Movie } from '../movie.model';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { MovieService } from '../movie.service';
 })
 export class HomeComponent implements OnInit {
   allTopMovies;
-  topMovies = [];
+  topMovies: Movie[] = [];
 
   constructor(public ms: MovieService) { }
 
