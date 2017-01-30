@@ -2,9 +2,8 @@
 <p>
   {{actor?.name}}
 </p>
-<div *ngFor="let credit of credits">
-  <p>
-    {{credit?.title}}
-  </p>
-  <img src={{credit.poster_medium}} alt="" />
+<div *ngFor="let credit of credits" (click)="navigateToMovie(credit?.id)">
+  <p>{{credit?.title}}</p>
+  <p>Portrayed: {{credit?.character}}</p>
+  <img src={{credit?.imageUrl}} alt="" />
 </div>

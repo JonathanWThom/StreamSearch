@@ -3,6 +3,4 @@
   {{movie?.title}}
 </p>
 
-<div *ngFor="let image of movie?.backgrounds, let i=index">
-  <img [src]="image.original.url" alt="image number {{i}}">
-</div>
+<img [src]="movie?.backdrop" alt="{{movie?.title}}">
