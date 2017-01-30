@@ -8,4 +8,10 @@
     <!--do other style-->
   </div>
 
+  <div *ngIf="category === 'person'">
+    {{item.name}}
+    <img (click)="goToPage(item.id)" src="{{item.images.small.url}}" alt="{{item.name}}">
+    <!--do other style-->
+  </div>
+
 </div>

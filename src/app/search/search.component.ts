@@ -39,4 +39,12 @@ export class SearchComponent implements OnInit {
    }
  }
 
+ peopleActive() {
+   if (this.searchedCategory === 'person') {
+     return 'active';
+   } else {
+     return 'inactive';
+   }
+ }
+
 }
