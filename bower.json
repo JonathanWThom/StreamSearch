@@ -1,0 +1,14 @@
+{
+  "name": "blank-and-chill",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/lukeephilips/blank-and-chill",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
