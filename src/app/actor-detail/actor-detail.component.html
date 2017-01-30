@@ -1,0 +1,10 @@
+<h1>actor detail</h1>
+<p>
+  {{actor?.name}}
+</p>
+<div *ngFor="let credit of credits">
+  <p>
+    {{credit?.title}}
+  </p>
+  <img src={{credit.poster_medium}} alt="" />
+</div>

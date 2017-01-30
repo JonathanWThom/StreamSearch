@@ -1,5 +1,4 @@
 export class Movie {
-  public rating: string;
   public overview: string;
   public genre: Object[];
   public tags: Object[];
@@ -9,6 +8,7 @@ export class Movie {
   public directors: Object[];
   public purchase_web_sources: Object[];
   public backgrounds: Object[];
+  public cast: Object[];
 
-  constructor(public title: string, public id: string, public cast: Object[], public release_year: number, public in_theatres: boolean, public release_date: string, public rotten_tomatoes: number, public metacritic: string, public poster_small: string, public poster_medium: string, public poster_large: string, public tmdb_id: number) {}
+  constructor(public title: string, public id: string, public release_year: number, public in_theatres: boolean, public release_date: string, public rotten_tomatoes: number, public metacritic: string, public poster_small: string, public poster_medium: string, public poster_large: string, public themoviedb: number, public rating: string) {}
 }

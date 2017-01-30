@@ -24,7 +24,7 @@ export class MovieDetailComponent implements OnInit {
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      this.movie = new Movie(res.title, res.id, res.cast, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.tmdb_id);
+      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.themoviedb, res.rating);
 
       this.movieService.getMovieImages(movieID).subscribe(response => {
         this.movieApiDetails['images'] = response;

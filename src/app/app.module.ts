@@ -8,6 +8,7 @@ import { routing } from './app.routing';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     HomeComponent,
     MovieDetailComponent,
     SearchComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    ActorDetailComponent
   ],
   imports: [
     BrowserModule,
