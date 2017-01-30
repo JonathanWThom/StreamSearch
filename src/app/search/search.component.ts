@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+  searchedCategory: string;
   constructor() { }
 
   ngOnInit() {
@@ -14,6 +14,29 @@ export class SearchComponent implements OnInit {
 
   searchTerm(term) {
     console.log(term);
+    console.log(this.searchedCategory);
+    ///service call here
+    // reroute to individual move component
   }
+
+  addCategory(category) {
+    this.searchedCategory = category;
+ }
+
+ movieActive() {
+   if (this.searchedCategory === 'Movie') {
+     return 'active';
+   } else {
+     return 'inactive';
+   }
+ }
+
+ tvActive() {
+   if (this.searchedCategory === 'TV') {
+     return 'active';
+   } else {
+     return 'inactive';
+   }
+ }
 
 }

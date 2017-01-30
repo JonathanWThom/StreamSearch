@@ -1,3 +1,7 @@
 <div>
   <input type="text" placeholder="search" #search (keyup.enter)="searchTerm(search.value)">
+  <ul>
+    <a [class]="movieActive()" (click)="addCategory('Movie')">Movies</a>
+    <a [class]="tvActive()" (click)="addCategory('TV')">TV</a>
+  </ul>
 </div>
