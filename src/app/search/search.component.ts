@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
   searchedCategory: string;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -15,8 +16,7 @@ export class SearchComponent implements OnInit {
   searchTerm(term) {
     console.log(term);
     console.log(this.searchedCategory);
-    ///service call here
-    // reroute to individual move component
+    this.router.navigate(['search', this.searchedCategory, term])
   }
 
   addCategory(category) {

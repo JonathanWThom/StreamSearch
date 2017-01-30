@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 import { Movie } from '../movie.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   allTopMovies;
   topMovies: Movie[] = [];
 
-  constructor(public ms: MovieService) { }
+  constructor(private ms: MovieService) { }
 
   ngOnInit() {
     this.ms.getTopMovies().subscribe(x => {
@@ -21,7 +22,6 @@ export class HomeComponent implements OnInit {
       for(var i=0; i < 4; i++) {
         this.topMovies.push(this.allTopMovies[i]);
       }
-      console.log(this.topMovies);
     });
   }
 
