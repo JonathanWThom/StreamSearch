@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  searchedCategory: string;
+  searchedCategory: string = 'movie';
   constructor(private router: Router) { }
 
   ngOnInit() {
