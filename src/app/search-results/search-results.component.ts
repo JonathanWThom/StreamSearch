@@ -15,7 +15,7 @@ export class SearchResultsComponent implements OnInit {
   itemsToDisplay = [];
   apiResults;
 
-  constructor(private route: ActivatedRoute, private ms: MovieService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private ms: MovieService) { }
 
   ngOnInit() {
     this.route.params.forEach((urlParameters) => {
@@ -27,8 +27,12 @@ export class SearchResultsComponent implements OnInit {
         console.log(this.itemsToDisplay);
       });
     });
+  }
 
-
+  goToPage(id) {
+    id = id.toString();
+    console.log(id);
+    this.router.navigate(['movie', id]);
   }
 
 }
