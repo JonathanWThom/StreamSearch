@@ -21,12 +21,13 @@ export class SearchResultsComponent implements OnInit {
     this.route.params.forEach((urlParameters) => {
       this.category = urlParameters['category'];
       this.term = urlParameters['term'];
+      this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
+        this.apiResults = x;
+        this.itemsToDisplay = this.apiResults.results;
+        console.log(this.itemsToDisplay);
+      });
     });
-    this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
-      this.apiResults = x;
-      this.itemsToDisplay = this.apiResults.results;
-      console.log(this.itemsToDisplay);
-    });
+
 
   }
 
