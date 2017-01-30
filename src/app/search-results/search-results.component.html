@@ -1,3 +1,4 @@
+<app-search></app-search>
 <div *ngFor="let item of itemsToDisplay">
   <div *ngIf="category === 'movie'">
     <img (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
