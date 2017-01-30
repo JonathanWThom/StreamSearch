@@ -6,11 +6,18 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { routing } from './app.routing';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+// import { movieKey } from './api-keys';
+// 
+// export const apiKey = {
+//   movieKey: movieKey.key
+// }
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,
