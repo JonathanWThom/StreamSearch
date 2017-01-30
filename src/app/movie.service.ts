@@ -25,4 +25,12 @@ export class MovieService {
     });
   }
 
+  getMovieDetails(movieId: string){
+    return this.http.get("http://api-public.guidebox.com/v2/movies/".concat(movieId).concat("/?api_key=").concat(Keys.guidebox))
+  }
+
+  getMovieImages(movieId: string){
+    return this.http.get("http://api-public.guidebox.com/v2/movies/".concat(movieId).concat("/images/?api_key=").concat(Keys.guidebox).concat('&filter=backgrounds'))
+  }
+
 }
