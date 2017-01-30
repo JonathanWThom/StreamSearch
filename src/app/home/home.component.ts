@@ -8,13 +8,20 @@ import { MovieService } from '../movie.service';
   providers: [MovieService]
 })
 export class HomeComponent implements OnInit {
+  allTopMovies;
+  topMovies = [];
 
   constructor(public ms: MovieService) { }
 
   ngOnInit() {
     this.ms.getTopMovies().subscribe(x => {
-      console.log(x);
-    })
+      this.allTopMovies = x;
+      this.allTopMovies = this.allTopMovies.results;
+      for(var i=0; i < 4; i++) {
+        this.topMovies.push(this.allTopMovies[i]);
+      }
+      console.log(this.topMovies);
+    });
   }
 
 }
