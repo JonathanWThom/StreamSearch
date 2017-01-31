@@ -14,8 +14,6 @@ export class SearchComponent implements OnInit {
   }
 
   searchTerm(term) {
-    console.log(term);
-    console.log(this.searchedCategory);
     this.router.navigate(['search', this.searchedCategory, term])
   }
 
