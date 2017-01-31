@@ -12,6 +12,15 @@ import { Movie } from '../movie.model';
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
   movie: Movie;
+
+  onNetflix: string = null;
+  onHulu: string = null;
+  onAmazon: string = null;
+  onHbo: string = null;
+  onItunes: string = null;
+
+
+
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -20,12 +29,26 @@ export class MovieDetailComponent implements OnInit {
       movieID = urlParametersArray['id'];
     });
 
-    // this.movieApiDetails['details'] = this.movieService.getMovieDetails(movieID).title;
     this.movieService.getMovieDetails(movieID).subscribe(response => {
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
       this.movie = new Movie(res.title, res.id, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.themoviedb, res.rating);
+      this.movie.sources = res.subscription_web_sources;
+      console.log(res);
+      if(this.movie.sources) {
+        for(var i = 0; i < this.movie.sources.length; i++) {
+          if (this.movie.sources[i]['display_name'] === "Hulu") {
+            this.onHulu = this.movie.sources[i]['link']
+          } else if (this.movie.sources[i]['display_name'] === "Netflix") {
+            this.onNetflix = this.movie.sources[i]['link']
+          } else if (this.movie.sources[i]['display_name'] === "HBO NOW") {
+            this.onHbo = this.movie.sources[i]['link']
+          } else if (this.movie.sources[i]['display_name'] === "Amazon Prime") {
+            this.onAmazon = this.movie.sources[i]['link']
+          }
+        }
+      }
 
       this.movieService.getMovieImages(this.movie.themoviedb.toString()).subscribe(response => {
         this.movieApiDetails['images'] = response;

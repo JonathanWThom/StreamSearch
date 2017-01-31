@@ -1,24 +1,18 @@
-<h1>movie detail</h1>
-<p>
-  {{movie?.title}}
-</p>
+<app-search></app-search>
+<h1>{{movie?.title}}</h1>
+<img class="banner" [src]="movie?.backdrop" alt="{{movie?.title}}">
 <p *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
   {{castMember.name}}
 </p>
 <div class="Netflix" *ngIf="onNetflix">
-  <a href={{onNetflix}} ><img src='' alt="Netflix"></a>
+  <a href={{onNetflix}} ><img src='assets/img/netflix-icon.png' alt="Netflix"></a>
 </div>
 <div class="Hulu" *ngIf="onHulu">
-  <a href={{onHulu}} ><img src='' alt="Hulu"></a>
+  <a href={{onHulu}} ><img src='assets/img/hulu-icon.png' alt="Hulu"></a>
 </div>
 <div class="Amazon" *ngIf="onAmazon">
-  <a href={{onAmazon}} ><img src='' alt="Amazon"></a>
+  <a href={{onAmazon}} ><img src='assets/img/amazon-icon.png' alt="Amazon"></a>
 </div>
 <div class="Hbo" *ngIf="onHbo">
-  <a href={{onHbo}} ><img src='' alt="Hbo"></a>
+  <a href={{onHbo}} ><img src='assets/img/hbo-go-icon.png' alt="Hbo"></a>
 </div>
-<div class="Itunes" *ngIf="onItunes">
-  <a href={{onItunes}} ><img src='' alt="Itunes"></a>
-</div>
-
-<img [src]="movie?.backdrop" alt="{{movie?.title}}">
