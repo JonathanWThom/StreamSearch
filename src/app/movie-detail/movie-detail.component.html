@@ -8,7 +8,8 @@
       <p>{{movie?.overview}}</p>
       <p><strong>Rating:</strong> {{movie?.rating}}</p>
       <p><strong>Release Year:</strong> {{movie?.release_year}}</p>
-      <p><strong>Directors: </strong><span *ngFor="let director of movie?.directors" (click)="getDirectorById(director?.id)">{{director?.name}} </span></p>
+      <p><strong>Directors: </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id, 'director')">{{director?.name}} </span></p>
+      <p><strong>Writers: </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id, 'writer')">{{writer?.name}} </span></p>
 
       <div class="streamingServices">
         <div class="streaming" *ngIf="onNetflix">

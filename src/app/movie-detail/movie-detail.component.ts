@@ -37,6 +37,7 @@ export class MovieDetailComponent implements OnInit {
       this.movie.sources = res.subscription_web_sources;
       this.movie.overview = res.overview;
       this.movie.directors = res.directors;
+      this.movie.writers = res.writers;
 
       console.log(this.movie)
       console.log(res)
@@ -70,8 +71,9 @@ export class MovieDetailComponent implements OnInit {
   navigateToActorById(actorId: string){
     this.router.navigate(['person', 'cast',actorId]);
   }
-  getDirectorById(directorId:string){
-    this.router.navigate(['person', 'crew',directorId]);
+  getCrewById(crewId:string, crewType){
+    this.router.navigate(['person', crewType, crewId]);
   }
+
 
 }

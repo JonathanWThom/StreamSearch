@@ -39,14 +39,21 @@ export class ActorDetailComponent implements OnInit {
         var posterPrefix = "http://image.tmdb.org/t/p/w185/";
         newCredits = creditResponse;
         newCredits = JSON.parse(newCredits._body);
+        console.log(newCredits)
         if(this.role === "cast"){
           this.credits = newCredits.cast.map(function(res){
-          return {'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'character': res.character};
+          return {'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'character': res.character, 'media_type': res.media_type};
           });
-        } else if (this.role === "crew") {
+        } else if (this.role === "director") {
           newCredits.crew.forEach(res =>{
             if(res.job === "Director") {
-              this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job});
+              this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
+            }
+          });
+        } else if (this.role === 'writer') {
+          newCredits.crew.forEach(res =>{
+            if(res.job === "Writer") {
+              this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
             }
           });
         }
@@ -54,12 +61,16 @@ export class ActorDetailComponent implements OnInit {
     })
   }
 
-  navigateToMovie(tmdbID: string): void{
-    var foundMovie;
-    this.movieService.getMovieByTmdbID(tmdbID).subscribe(response => {
-      foundMovie = response;
-      foundMovie = JSON.parse(foundMovie._body);
-      this.router.navigate(['movie', foundMovie.id]);
-    })
+  navigateToMovie(tmdbID: string, media_type): void{
+    if(media_type === "movie") {
+      var foundMovie;
+      this.movieService.getMovieByTmdbID(tmdbID).subscribe(response => {
+        foundMovie = response;
+        foundMovie = JSON.parse(foundMovie._body);
+        this.router.navigate(['movie', foundMovie.id]);
+      })
+    } else if (media_type === "tv" ){
+      alert("build navigateToShow function")
+    }
   }
 }
