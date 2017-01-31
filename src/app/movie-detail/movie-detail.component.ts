@@ -33,9 +33,14 @@ export class MovieDetailComponent implements OnInit {
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.themoviedb, res.rating);
+      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theaters, res.release_date, res.rottentomatoes, res.metacritic, res.poster_120x171, res.poster_240x342, res.poster_400x570, res.themoviedb, res.rating);
       this.movie.sources = res.subscription_web_sources;
-      console.log(res);
+      this.movie.overview = res.overview;
+      this.movie.directors = res.directors;
+
+      console.log(this.movie)
+      console.log(res)
+
       if(this.movie.sources) {
         for(var i = 0; i < this.movie.sources.length; i++) {
           if (this.movie.sources[i]['display_name'] === "Hulu") {
@@ -59,7 +64,6 @@ export class MovieDetailComponent implements OnInit {
           this.movieApiDetails['cast'] = response;
           this.movieApiDetails['cast'] = JSON.parse(this.movieApiDetails['cast']._body);
           this.movie.cast = this.movieApiDetails['cast'].cast;
-          console.log(this.movie.cast[0]['name'])
       })
     });
   }

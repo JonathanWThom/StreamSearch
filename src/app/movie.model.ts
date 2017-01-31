@@ -11,5 +11,6 @@ export class Movie {
   public cast: Object[];
   public sources: Object[];
 
+
   constructor(public title: string, public id: string, public release_year: number, public in_theatres: boolean, public release_date: string, public rotten_tomatoes: number, public metacritic: string, public poster_small: string, public poster_medium: string, public poster_large: string, public themoviedb: number, public rating: string) {}
 }

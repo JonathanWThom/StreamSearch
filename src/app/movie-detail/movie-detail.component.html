@@ -1,18 +1,34 @@
 <app-search></app-search>
-<h1>{{movie?.title}}</h1>
-<img class="banner" [src]="movie?.backdrop" alt="{{movie?.title}}">
-<p *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
-  {{castMember.name}}
-</p>
-<div class="Netflix" *ngIf="onNetflix">
-  <a href={{onNetflix}} ><img src='assets/img/netflix-icon.png' alt="Netflix"></a>
-</div>
-<div class="Hulu" *ngIf="onHulu">
-  <a href={{onHulu}} ><img src='assets/img/hulu-icon.png' alt="Hulu"></a>
-</div>
-<div class="Amazon" *ngIf="onAmazon">
-  <a href={{onAmazon}} ><img src='assets/img/amazon-icon.png' alt="Amazon"></a>
-</div>
-<div class="Hbo" *ngIf="onHbo">
-  <a href={{onHbo}} ><img src='assets/img/hbo-go-icon.png' alt="Hbo"></a>
+<div class="wrap">
+  <div class="titleSection">
+    <img class="banner"[src]="movie?.backdrop" alt="{{movie?.title}}">
+    <img class="poster" [src]="movie?.poster_large" alt="{{movie?.poster}}">
+    <div class="text">
+      <h1 class="title">{{movie?.title}}</h1>
+      <p>{{movie?.overview}}</p>
+      <p><strong>Rating:</strong> {{movie?.rating}}</p>
+      <p><strong>Release Year:</strong> {{movie?.release_year}}</p>
+      <p><strong>Directors: </strong><span *ngFor="let director of movie?.directors" (click)="getDirectorById(director?.id)">{{director?.name}} </span></p>
+
+      <div class="streamingServices">
+        <div class="streaming" *ngIf="onNetflix">
+          <a href={{onNetflix}} ><img src='assets/img/netflix-icon.png' alt="Netflix"></a>
+        </div>
+        <div class="streaming" *ngIf="onHulu">
+          <a href={{onHulu}} ><img src='assets/img/hulu-icon.png' alt="Hulu"></a>
+        </div>
+        <div class="streaming" *ngIf="onAmazon">
+          <a href={{onAmazon}} ><img src='assets/img/amazon-icon.png' alt="Amazon"></a>
+        </div>
+        <div class="streaming" *ngIf="onHbo">
+          <a href={{onHbo}} ><img src='assets/img/hbo-go-icon.png' alt="Hbo"></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <p *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
+    {{castMember.name}}
+  </p>
+
 </div>
