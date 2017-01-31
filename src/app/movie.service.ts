@@ -36,7 +36,7 @@ export class MovieService {
     return this.http.get("http://api-public.guidebox.com/v2/search?api_key=".concat(Keys.guidebox).concat("&type=movie&field=id&id_type=themoviedb&query=").concat(tmdbID));
   }
   getMovieCast(GbId){
-    return this.http.get("http://api-public.guidebox.com/v2/person/".concat(GbId).concat("/credits?api_key=").concat(Keys.guidebox).concat("&role=cast"));
+    return this.http.get("http://api-public.guidebox.com/v2/movies/".concat(GbId).concat("?api_key=").concat(Keys.guidebox));
   }
 
 }
