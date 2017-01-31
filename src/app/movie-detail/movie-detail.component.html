@@ -7,10 +7,20 @@
     <div class="text">
       <h1 class="title">{{movie?.title}}</h1>
       <p>{{movie?.overview}}</p>
-      <p><strong>Rating:</strong> {{movie?.rating}}</p>
-      <p><strong>Release Year:</strong> {{movie?.release_year}}</p>
-      <p><strong>Directors: </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id, 'director')">{{director?.name}} </span></p>
-      <p><strong>Writers: </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id, 'writer')">{{writer?.name}} </span></p>
+      <div class="row">
+        <div class="col-sm-8">
+          <p><strong>Rating:</strong> {{movie?.rating}}</p>
+          <p><strong>Release Year:</strong> {{movie?.release_year}}</p>
+          <p><strong>Directors </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id, 'director')">| <a>{{director?.name}}</a> </span></p>
+          <p><strong>Writers </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id, 'writer')">| <a>{{writer?.name}}</a> </span></p>
+        </div>
+        <div class="col-sm-4">
+          <div *ngIf="user" class="userButtons">
+            <button (click)="addToFavorites(movie.id)" class="btn btn-md btn-success favoriteButtons">Add to Favorites</button><br>
+            <button (click)="removeFromFavorites(movie.id)" class="btn btn-md btn-danger favoriteButtons">Remove from Favorites</button>
+          </div>
+        </div>
+      </div>
 
       <div class="streamingServices">
         <div class="streaming" *ngIf="onNetflix">
@@ -29,13 +39,16 @@
 
     </div>
   </div>
-  <div class="topBilled" *ngFor='let actor of topBilled' (click)="navigateToActorById(castMember.id)">
-    <p>{{actor.name}}</p>
+  <h3 class="starringTitle">Starring Cast</h3>
+  <div class="starring">
+    <div class="topBilled" *ngFor='let actor of topBilled' (click)="navigateToActorById(actor.id)">
+      <p><a>{{actor.name}}</a></p>
+      <img src="https://www.smhlancers.org/wp-content/uploads/2016/06/profile-placeholder.png" alt="{{actor.name}}" />
+    </div>
   </div>
-  <div *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
-    <p>{{castMember.name}}</p>
+  <div class="cast">
+    <h5>Cast</h5>
+    <div *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
+      <p><a>{{castMember.name}}</a></p>
+    </div>
   </div>
-
-<div *ngIf="user">
-  <button (click)="addToFavorites(movie.id)">Add to Favorites</button>
-</div>
