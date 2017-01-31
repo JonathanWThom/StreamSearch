@@ -1,6 +1,8 @@
 export class User {
-  public favoriteMovies: Object[];
-  public favoritePeople: Object[];
-  public favoriteShows: Object[];
-  constructor(public uid: string, public name: string, public image: string) {}
+  public favoriteMovies: string[];
+  public favoritePeople: string[];
+  public favoriteShows: string[];
+  constructor(public uid: string, public name: string, public image: string) {
+    this.favoriteMovies = [];
+  }
 }

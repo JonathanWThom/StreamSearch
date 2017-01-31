@@ -2,6 +2,9 @@
 <p>
   {{movie?.title}}
 </p>
+<div *ngIf="user">
+  <button (click)="addToFavorites(movie.id, user)">Add to Favorites</button>
+</div>
 <p *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
   {{castMember.name}}
 </p>
