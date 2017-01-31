@@ -28,6 +28,10 @@ export class MovieService {
     return this.http.get("http://api-public.guidebox.com/v2/movies/".concat(movieID).concat("/?api_key=").concat(Keys.guidebox))
   }
 
+  getShowDetails(showID: string){
+    return this.http.get("http://api-public.guidebox.com/v2/show/".concat(showID).concat("/?api_key=").concat(Keys.guidebox))
+  }
+
   getMovieImages(tmdbID: string){
     return this.http.get("https://api.themoviedb.org/3/movie/".concat(tmdbID).concat("?api_key=").concat(Keys.tmdb).concat("&language=en-US"));
   }

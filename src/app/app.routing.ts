@@ -6,6 +6,7 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { TvDetailComponent } from './tv-detail/tv-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -15,6 +16,10 @@ const appRoutes: Routes = [
   {
     path: 'movie/:id',
     component: MovieDetailComponent
+  },
+  {
+    path: 'show/:id',
+    component: TvDetailComponent
   },
   {
     path: 'search/:category/:term',
