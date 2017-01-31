@@ -2,3 +2,7 @@
   <button type="button" class="btn btn-default" md-raised-button (click)="login()">Use My Google Account</button>
   <button type="button" class="btn btn-default" md-raised-button (click)="logout()">Log Out</button>
 </div>
+
+<div *ngIf="user">
+  {{user.displayName}}
+</div>
