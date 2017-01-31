@@ -1,11 +1,10 @@
 <div class="container">
-  <button type="button" class="btn btn-default" md-raised-button (click)="login()">Use My Google Account</button>
-  <button type="button" class="btn btn-default" md-raised-button (click)="logout()">Log Out</button>
-</div>
+  <div *ngIf="!user">
+    <button type="button" class="btn btn-default" md-raised-button (click)="login()">Use My Google Account</button>
+  </div>
 
-<div *ngIf="!user">
-  <h1>There is not a user</h1>
-</div>
-<div *ngIf="user">
-  <h1>There is a user</h1>
+  <div *ngIf="user">
+    <button type="button" class="btn btn-default" md-raised-button (click)="logout()">Log Out</button>
+    <h5>You are logged in as {{user.google.displayName}}</h5>
+  </div>
 </div>
