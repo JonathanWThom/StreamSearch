@@ -59,7 +59,7 @@ export class UserService {
   }
 
   //take user authentication data and movie id and add to firebase user favorites list
-  addToFavorites(movieId: string, user): void{
+  addToFavoriteMovies(movieId: string, user): void{
     var that = this;
     //get firebase user from authentication data
     this.getUserFB(user).subscribe(fbUser => {

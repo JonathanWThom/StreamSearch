@@ -15,6 +15,7 @@ export class UserFavoritesComponent implements OnInit {
   user;
   fbUser;
   favoriteMovies;
+  favoriteShows;
   movieApiDetails;
 
 
