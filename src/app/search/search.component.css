@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input {
+  width: 100%;
+  height: 3em;
+  padding: 3px 7%;
+  text-transform: uppercase;
+  border: 1px solid lightgrey;
+  border-right: none;
+  border-left: none;
+  margin-bottom: 20px;
+}
+input:focus {
+  outline: none;
+}
+.terms {
+  margin-left: 7%;
+  margin-bottom: 5px;
+}
+a {
+  padding-right: 15px;
+  color: grey;
+  text-transform: uppercase;
+}
+.active {
+  color: #2b649e;
+  font-weight: 500;
+}
+.inactive {
+  color: bold;
+}
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: grey;
+}

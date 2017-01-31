@@ -1,19 +1,30 @@
 <nav class="navbar navbar-default">
-   <div class="container-fluid">
-     <div class="navbar-header">
-       <a class="navbar-brand" routerLink="">Blank and Chill</a>
-     </div>
-     <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
-       <li><a routerLink="">About</a></li>
-       <li><a routerLink="log-in">Sign Up</a></li>
-       <li><a routerLink="">Movies</a></li>
-       <li><a routerLink="">TV</a></li>
-       <li><a routerLink="">People</a></li>
-     </ul>
-     <!--PHONE NAV MENU-->
-     <ul class="phone-nav hidden-md hidden-lg">
-       <li class="menu"><a href="#"><img src="assets/img/menu.png" alt="navigation"></a></li>
-     </ul>
-   </div><!--end of navbar container-fluid-->
- </nav>
+ <div class="navbar-header">
+   <a class="navbar-brand" routerLink="">Blank and Chill</a>
+ </div>
+ <div class="links">
+   <ul class="nav navbar-nav hidden-xs">
+     <li><a routerLink="">About</a></li>
+     <li><a routerLink="log-in">Sign Up</a></li>
+     <li><a routerLink="">Movies</a></li>
+     <li><a routerLink="">TV</a></li>
+     <li><a routerLink="">People</a></li>
+   </ul>
+ </div>
+ <!--PHONE NAV MENU-->
+ <ul class="phone-nav hidden-sm hidden-md hidden-lg">
+   <li class="menu"><img src="assets/img/menu.png" alt="navigation"></li>
+ </ul>
+ <div class="hidden-menu">
+   <ul class="nav navbar-nav">
+     <li><a routerLink="">Home</a></li>
+     <li><a routerLink="">About</a></li>
+     <li><a routerLink="log-in">Sign Up</a></li>
+     <li><a routerLink="">Movies</a></li>
+     <li><a routerLink="">TV</a></li>
+     <li><a routerLink="">People</a></li>
+     <h5 class="close-menu">close X</h5>
+   </ul>
+ </div>
+</nav>
 <router-outlet></router-outlet>

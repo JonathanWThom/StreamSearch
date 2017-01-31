@@ -1,13 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
-nav {
-  .menu {
-    list-style: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #e1e1e1;
+}
+.navbar-default {
+  background: #1f1f1f;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 0;
+  .navbar-brand {
+    padding-left: 40px;
+    align-self: flex-start;
   }
-}
-.active {
-  color: blue;
-}
-
-.inactive {
-  color: black;
+  .links {
+    padding-right: 40px;
+    margin-left: auto;
+  }
+  .navbar-header {
+    margin-left: 7%;
+    .navbar-brand {
+      font-size: 2.3em;
+      padding-left: 0px;
+    }
+  }
+  .hidden-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    text-align: center;
+    background: rgba(255,255,255, 1);
+    width: 100vw;
+    transform: translate(-50%, 0);
+    a {
+      font-size: 1.2em;
+      border-bottom: 1px solid lightgrey;
+    }
+    .close-menu {
+      transition: all ease-in-out 200ms;
+      padding: 20px;
+     &:hover {
+       cursor: pointer;
+       color: grey;
+     }
+    }
+  }
+  .menu {
+    margin-top: 12px;
+    margin-right: 20px;
+    list-style: none;
+    transition: all ease-in-out 200ms;
+    img {
+      width: 60px;
+      filter: invert(0.4);
+    }
+    &:hover {
+      cursor: pointer;
+      filter: invert(0.8);
+    }
+  }
 }

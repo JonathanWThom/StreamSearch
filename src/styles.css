@@ -1,11 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
-nav .menu {
-  list-style: none; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
-.active {
-  color: blue; }
+body {
+  background: #e1e1e1; }
 
-.inactive {
-  color: black; }
+.navbar-default {
+  background: #1f1f1f;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 0; }
+  .navbar-default .navbar-brand {
+    padding-left: 40px;
+    align-self: flex-start; }
+  .navbar-default .links {
+    padding-right: 40px;
+    margin-left: auto; }
+  .navbar-default .navbar-header {
+    margin-left: 7%; }
+    .navbar-default .navbar-header .navbar-brand {
+      font-size: 2.3em;
+      padding-left: 0px; }
+  .navbar-default .hidden-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    text-align: center;
+    background: white;
+    width: 100vw;
+    transform: translate(-50%, 0); }
+    .navbar-default .hidden-menu a {
+      font-size: 1.2em;
+      border-bottom: 1px solid lightgrey; }
+    .navbar-default .hidden-menu .close-menu {
+      transition: all ease-in-out 200ms;
+      padding: 20px; }
+      .navbar-default .hidden-menu .close-menu:hover {
+        cursor: pointer;
+        color: grey; }
+  .navbar-default .menu {
+    margin-top: 12px;
+    margin-right: 20px;
+    list-style: none;
+    transition: all ease-in-out 200ms; }
+    .navbar-default .menu img {
+      width: 60px;
+      filter: invert(0.4); }
+    .navbar-default .menu:hover {
+      cursor: pointer;
+      filter: invert(0.8); }
 
 /*# sourceMappingURL=styles.css.map */
