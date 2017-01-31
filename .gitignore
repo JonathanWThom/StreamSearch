@@ -41,4 +41,3 @@ testem.log
 Thumbs.db
 
 #Api Keys
-src/app/api-keys.ts
