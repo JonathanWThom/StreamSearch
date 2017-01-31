@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 <app-search></app-search>
 <h1>{{movie?.title}}</h1>
 <img class="banner" [src]="movie?.backdrop" alt="{{movie?.title}}">
+=======
+<h1>movie detail</h1>
+<p>
+  {{movie?.title}}
+</p>
+<div *ngIf="user">
+  <button (click)="addToFavorites(movie.id, user)">Add to Favorites</button>
+</div>
+>>>>>>> 05671eb200e9cbc89d1abbd95657cd585f47d0cb
 <p *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
   {{castMember.name}}
 </p>

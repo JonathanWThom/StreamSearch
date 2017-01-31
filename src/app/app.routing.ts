@@ -21,7 +21,7 @@ const appRoutes: Routes = [
     component: SearchResultsComponent
   },
   {
-    path: 'log-in',
+    path: 'account',
     component: LogInComponent
   },
   {
