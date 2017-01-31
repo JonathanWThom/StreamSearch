@@ -14,6 +14,7 @@ import { UserService } from '../user.service';
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
   movie: Movie;
+  topBilled = [];
 
   onNetflix: string = null;
   onHulu: string = null;
@@ -22,7 +23,7 @@ export class MovieDetailComponent implements OnInit {
   onItunes: string = null;
 
   user = null;
-  userFavoriteMovies;
+  // userFavoriteMovies;
   fbUser: FirebaseObjectObservable<any>;
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
     us.checkForUser().subscribe(user => {
@@ -30,7 +31,7 @@ export class MovieDetailComponent implements OnInit {
       if (this.user) {
         this.fbUser = this.us.getUserFB(this.user);
         this.fbUser.subscribe(fbUser => {
-          this.userFavoriteMovies = fbUser.favoriteMovies;
+          // this.userFavoriteMovies = fbUser.favoriteMovies;
         })
       }
     });
@@ -55,7 +56,6 @@ export class MovieDetailComponent implements OnInit {
       this.movie.writers = res.writers;
 
       console.log(this.movie)
-      console.log(res)
 
       if(this.movie.sources) {
         for(var i = 0; i < this.movie.sources.length; i++) {
@@ -80,6 +80,8 @@ export class MovieDetailComponent implements OnInit {
           this.movieApiDetails['cast'] = response;
           this.movieApiDetails['cast'] = JSON.parse(this.movieApiDetails['cast']._body);
           this.movie.cast = this.movieApiDetails['cast'].cast;
+          this.topBilled = this.movie.cast.splice(0,5);
+          console.log(this.topBilled)
       })
     });
   }

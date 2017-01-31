@@ -28,10 +28,13 @@
 
     </div>
   </div>
-  <p *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
-    {{castMember.name}}
-  </p>
+  <div class="topBilled" *ngFor='let actor of topBilled' (click)="navigateToActorById(castMember.id)">
+    <p>{{actor.name}}</p>
+  </div>
+  <div *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
+    <p>{{castMember.name}}</p>
+  </div>
 
 <div *ngIf="user">
-  <button (click)="addToFavorites(movie.id, user)">Add to Favorites</button>
+  <button (click)="addToFavorites(movie.id)">Add to Favorites</button>
 </div>

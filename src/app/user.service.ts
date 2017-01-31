@@ -63,7 +63,6 @@ export class UserService {
     var that = this;
     //get firebase user from authentication data
     this.getUserFB(user).subscribe(fbUser => {
-
       //get firebase favorites list and update with new movie
       var favorites;
       if(fbUser.favoriteMovies){
@@ -72,7 +71,6 @@ export class UserService {
         favorites = [];
       }
 
-      console.log(fbUser);
       //if the list does not already include the new movie
       //push updates to firebase
       if (!favorites.includes(movieId)) {
