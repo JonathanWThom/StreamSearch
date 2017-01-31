@@ -49,4 +49,8 @@ export class UserFavoritesComponent implements OnInit {
   ngOnInit() {
   }
 
+  removeFavorite(movieId: string){
+    this.us.removeFromFavorites(movieId, this.user);
+  }
+
 }

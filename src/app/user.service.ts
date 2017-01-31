@@ -81,6 +81,19 @@ export class UserService {
         });
       }
     })
+  }
 
+  removeFromFavorites(movieId: string, user): void{
+    var that = this;
+    //get firebase user from authentication data
+    this.getUserFB(user).subscribe(fbUser => {
+      if (fbUser.favoriteMovies.includes(movieId)) {
+        var movieIndex = fbUser.favoriteMovies.indexOf(movieId);
+        fbUser.favoriteMovies.splice(movieIndex, 1);
+        that.af.database.object('/users/' + fbUser.$key).update({
+          "favoriteMovies": fbUser.favoriteMovies
+        });
+      }
+    })
   }
 }

@@ -1,5 +1,6 @@
 <div class="row" *ngFor="let favorite of favoriteMovies">
   {{favorite.title}}
+  <button class="btn" *ngIf="favorite.id" (click)="removeFavorite(favorite.id)">Remove from favorites</button>
   <a *ngFor="let source of favorite.sources">
     <a href={{source.link}} *ngIf="source.source === 'hulu'">
       <img src="/assets/img/hulu-icon.png" alt="Hulu Icon">
