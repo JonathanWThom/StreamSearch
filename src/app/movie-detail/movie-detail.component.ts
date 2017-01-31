@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MovieService } from '../movie.service';
 import { Movie } from '../movie.model';
 
@@ -12,13 +12,14 @@ import { Movie } from '../movie.model';
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
   movie: Movie;
-  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute) { }
+  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     var movieID;
     this.activatedRoute.params.forEach((urlParametersArray) => {
       movieID = urlParametersArray['id'];
     });
+
     // this.movieApiDetails['details'] = this.movieService.getMovieDetails(movieID).title;
     this.movieService.getMovieDetails(movieID).subscribe(response => {
       this.movieApiDetails['details'] = response;
@@ -29,9 +30,18 @@ export class MovieDetailComponent implements OnInit {
       this.movieService.getMovieImages(this.movie.themoviedb.toString()).subscribe(response => {
         this.movieApiDetails['images'] = response;
         this.movieApiDetails['images'] = JSON.parse(this.movieApiDetails['images']._body);
-        this.movie.backdrop = this.movieService.prefix + this.movieApiDetails['images'].backdrop_path;
+        this.movie.backdrop = this.movieService.backdropPrefix + this.movieApiDetails['images'].backdrop_path;
+      })
+      this.movieService.getMovieCast(movieID).subscribe(res => {
+          this.movieApiDetails['cast'] = response;
+          this.movieApiDetails['cast'] = JSON.parse(this.movieApiDetails['cast']._body);
+          this.movie.cast = this.movieApiDetails['cast'].cast;
+          console.log(this.movie.cast[0]['name'])
       })
     });
+  }
+  navigateToActorById(actorId: string){
+    this.router.navigate(['actor', actorId]);
   }
 
 }

@@ -6,14 +6,13 @@ import { Keys } from './api-keys';
 
 @Injectable()
 export class MovieService {
-  prefix = "http://image.tmdb.org/t/p/w500/";
+  backdropPrefix = "http://image.tmdb.org/t/p/w1280/";
 
   constructor(private http: Http) { }
 
   getTopMovies() {
     return this.http.get("https://api.themoviedb.org/3/movie/popular?api_key=" + Keys.tmdb + "&language=en-US&page=1")
     .map(res => {
-      console.log(res);
       return <any[]> res.json();
     });
   }
@@ -21,7 +20,6 @@ export class MovieService {
   getResultsByTerm(category, term) {
     return this.http.get("http://api-public.guidebox.com/v2/search?api_key=" + Keys.guidebox + "&type=" + category + "&query=" + term)
     .map(res => {
-      console.log(res);
       return <any[]> res.json();
     });
   }
@@ -36,6 +34,9 @@ export class MovieService {
 
   getMovieByTmdbID(tmdbID: string){
     return this.http.get("http://api-public.guidebox.com/v2/search?api_key=".concat(Keys.guidebox).concat("&type=movie&field=id&id_type=themoviedb&query=").concat(tmdbID));
+  }
+  getMovieCast(GbId){
+    return this.http.get("http://api-public.guidebox.com/v2/person/".concat(GbId).concat("/credits?api_key=").concat(Keys.guidebox).concat("&role=cast"));
   }
 
 }

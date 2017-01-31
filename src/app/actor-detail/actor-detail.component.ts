@@ -32,11 +32,11 @@ export class ActorDetailComponent implements OnInit {
       this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
       actorTmdbID = this.newActor.themoviedb;
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
-        var prefix = "http://image.tmdb.org/t/p/w185/";
+        var posterPrefix = "http://image.tmdb.org/t/p/w185/";
         newCredits = creditResponse;
         newCredits = JSON.parse(newCredits._body);
         this.credits = newCredits.cast.map(function(res){
-          return {'id': res.id, 'title': res.title, 'imageUrl': prefix.concat(res.poster_path), 'character': res.character};
+          return {'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'character': res.character};
         });
       })
     })
@@ -49,6 +49,5 @@ export class ActorDetailComponent implements OnInit {
       foundMovie = JSON.parse(foundMovie._body);
       this.router.navigate(['movie', foundMovie.id]);
     })
-
   }
 }
