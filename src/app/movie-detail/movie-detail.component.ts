@@ -14,6 +14,7 @@ import { UserService } from '../user.service';
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
   movie: Movie;
+  topBilled = [];
 
   onNetflix: string = null;
   onHulu: string = null;
@@ -22,7 +23,7 @@ export class MovieDetailComponent implements OnInit {
   onItunes: string = null;
 
   user = null;
-  userFavoriteMovies;
+  // userFavoriteMovies;
   fbUser: FirebaseObjectObservable<any>;
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
     us.checkForUser().subscribe(user => {
@@ -30,7 +31,7 @@ export class MovieDetailComponent implements OnInit {
       if (this.user) {
         this.fbUser = this.us.getUserFB(this.user);
         this.fbUser.subscribe(fbUser => {
-          this.userFavoriteMovies = fbUser.favoriteMovies;
+          // this.userFavoriteMovies = fbUser.favoriteMovies;
         })
       }
     });
@@ -48,9 +49,14 @@ export class MovieDetailComponent implements OnInit {
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.themoviedb, res.rating);
+      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theaters, res.release_date, res.rottentomatoes, res.metacritic, res.poster_120x171, res.poster_240x342, res.poster_400x570, res.themoviedb, res.rating);
       this.movie.sources = res.subscription_web_sources;
-      console.log(res);
+      this.movie.overview = res.overview;
+      this.movie.directors = res.directors;
+      this.movie.writers = res.writers;
+
+      console.log(this.movie)
+
       if(this.movie.sources) {
         for(var i = 0; i < this.movie.sources.length; i++) {
           if (this.movie.sources[i]['display_name'] === "Hulu") {
@@ -74,12 +80,18 @@ export class MovieDetailComponent implements OnInit {
           this.movieApiDetails['cast'] = response;
           this.movieApiDetails['cast'] = JSON.parse(this.movieApiDetails['cast']._body);
           this.movie.cast = this.movieApiDetails['cast'].cast;
+          this.topBilled = this.movie.cast.splice(0,5);
+          console.log(this.topBilled)
       })
     });
   }
   navigateToActorById(actorId: string){
-    this.router.navigate(['actor', actorId]);
+    this.router.navigate(['person', 'cast',actorId]);
   }
+  getCrewById(crewId:string, crewType){
+    this.router.navigate(['person', crewType, crewId]);
+  }
+
 
   addToFavorites(movieId: string) {
     this.us.addToFavorites(movieId, this.user);
