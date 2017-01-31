@@ -41,9 +41,9 @@
   </div>
   <h3 class="starringTitle">Starring Cast</h3>
   <div class="starring">
-    <div class="topBilled" *ngFor='let actor of topBilled' (click)="navigateToActorById(actor.id)">
-      <p><a>{{actor.name}}</a></p>
-      <img src="https://www.smhlancers.org/wp-content/uploads/2016/06/profile-placeholder.png" alt="{{actor.name}}" />
+    <div class="topBilled" *ngFor='let actor of actorsImages' (click)=navigateToActorById(actor[2])>
+      <p><a>{{actor[0]}}</a></p>
+      <img src={{actor[1]}}>
     </div>
   </div>
   <div class="cast">
