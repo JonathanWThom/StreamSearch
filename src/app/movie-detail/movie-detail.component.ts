@@ -14,6 +14,13 @@ import { UserService } from '../user.service';
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
   movie: Movie;
+
+  onNetflix: string = null;
+  onHulu: string = null;
+  onAmazon: string = null;
+  onHbo: string = null;
+  onItunes: string = null;
+
   user = null;
   userFavoriteMovies;
   fbUser: FirebaseObjectObservable<any>;
@@ -29,6 +36,7 @@ export class MovieDetailComponent implements OnInit {
     });
   }
 
+
   ngOnInit() {
 
     var movieID;
@@ -36,12 +44,32 @@ export class MovieDetailComponent implements OnInit {
       movieID = urlParametersArray['id'];
     });
 
-    // this.movieApiDetails['details'] = this.movieService.getMovieDetails(movieID).title;
     this.movieService.getMovieDetails(movieID).subscribe(response => {
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.themoviedb, res.rating);
+      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theaters, res.release_date, res.rottentomatoes, res.metacritic, res.poster_120x171, res.poster_240x342, res.poster_400x570, res.themoviedb, res.rating);
+      this.movie.sources = res.subscription_web_sources;
+      this.movie.overview = res.overview;
+      this.movie.directors = res.directors;
+      this.movie.writers = res.writers;
+
+      console.log(this.movie)
+      console.log(res)
+
+      if(this.movie.sources) {
+        for(var i = 0; i < this.movie.sources.length; i++) {
+          if (this.movie.sources[i]['display_name'] === "Hulu") {
+            this.onHulu = this.movie.sources[i]['link']
+          } else if (this.movie.sources[i]['display_name'] === "Netflix") {
+            this.onNetflix = this.movie.sources[i]['link']
+          } else if (this.movie.sources[i]['display_name'] === "HBO NOW") {
+            this.onHbo = this.movie.sources[i]['link']
+          } else if (this.movie.sources[i]['display_name'] === "Amazon Prime") {
+            this.onAmazon = this.movie.sources[i]['link']
+          }
+        }
+      }
 
       this.movieService.getMovieImages(this.movie.themoviedb.toString()).subscribe(response => {
         this.movieApiDetails['images'] = response;
@@ -56,8 +84,12 @@ export class MovieDetailComponent implements OnInit {
     });
   }
   navigateToActorById(actorId: string){
-    this.router.navigate(['actor', actorId]);
+    this.router.navigate(['person', 'cast',actorId]);
   }
+  getCrewById(crewId:string, crewType){
+    this.router.navigate(['person', crewType, crewId]);
+  }
+
 
   addToFavorites(movieId: string) {
     this.us.addToFavorites(movieId, this.user);
