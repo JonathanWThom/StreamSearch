@@ -1,5 +1,17 @@
-<div *ngFor="let favorite of favoriteMovies">
-  hey
-  {{favorite}}
+<div class="row" *ngFor="let favorite of favoriteMovies">
+  {{favorite.title}}
+  <a *ngFor="let source of favorite.sources">
+    <a href={{source.link}} *ngIf="source.source === 'hulu'">
+      <img src="/assets/img/hulu-icon.png" alt="Hulu Icon">
+    </a>
+    <a href={{source.link}} *ngIf="source.source === 'amazon_prime'">
+      <img src="/assets/img/amazon-icon.png" alt="Amazon Icon">
+    </a>
+    <a href={{source.link}} *ngIf="source.source === 'hbo_go' || source.source === 'hbo_now'">
+      <img src="/assets/img/hbo-go-icon.png" alt="HBO GO Icon">
+    </a>
+    <a href={{source.link}} *ngIf="source.source === 'netflix'">
+      <img src="/assets/img/netflix-icon.png" alt="Netflix Icon">
+    </a>
+  </a>
 </div>
-something!!!!!
