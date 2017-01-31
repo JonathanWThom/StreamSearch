@@ -19,14 +19,12 @@ export class UserFavoritesComponent implements OnInit {
       this.us.getUserFB(this.user).subscribe(fbUser => {
         this.fbUser = fbUser;
         this.favoriteMovies = this.fbUser.favoriteMovies;
-        console.log(this.fbUser.favoriteMovies);
       });
 
     });
   }
 
   ngOnInit() {
-    console.log(this.fbUser);
   }
 
 }
