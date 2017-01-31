@@ -108,7 +108,7 @@ export class MovieDetailComponent implements OnInit {
 
 
   addToFavorites(movieId: string) {
-    this.us.addToFavorites(movieId, this.user);
+    this.us.addToFavoriteMovies(movieId, this.user);
   }
 
 }

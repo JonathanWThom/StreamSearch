@@ -30,7 +30,7 @@ export class SearchResultsComponent implements OnInit {
 
   goToPage(id) {
     id = id.toString();
-    this.router.navigate(['movie', id]);
+    this.router.navigate([this.category, id]);
   }
 
 }

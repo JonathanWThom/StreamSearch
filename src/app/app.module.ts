@@ -13,6 +13,7 @@ import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { LogInComponent } from './log-in/log-in.component';
 import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 import { UserFavoritesComponent } from './user-favorites/user-favorites.component';
+import { TvDetailComponent } from './tv-detail/tv-detail.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -33,7 +34,8 @@ export const firebaseConfig = {
     SearchResultsComponent,
     LogInComponent,
     ActorDetailComponent,
-    UserFavoritesComponent
+    UserFavoritesComponent,
+    TvDetailComponent
   ],
   imports: [
     BrowserModule,
