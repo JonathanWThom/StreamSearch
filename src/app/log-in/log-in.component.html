@@ -1,6 +1,7 @@
 <div class="container">
   <div *ngIf="!user">
-    <button type="button" class="btn btn-default" md-raised-button (click)="login()">Use My Google Account</button>
+    <h4>User Log in:</h4>
+    <button type="button" class="btn btn-default" md-raised-button (click)="login()"><img style="height: 1.5em"src="assets/img/google-icon.png"> Use My Google Account</button>
   </div>
 
   <div *ngIf="user">
