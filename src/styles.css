@@ -28,6 +28,23 @@ body {
     .navbar-default .navbar-header .navbar-brand {
       font-size: 2.3em;
       padding-left: 0px; }
+  .navbar-default .hidden-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    text-align: center;
+    background: white;
+    width: 100vw;
+    transform: translate(-50%, 0); }
+    .navbar-default .hidden-menu a {
+      font-size: 1.2em;
+      border-bottom: 1px solid lightgrey; }
+    .navbar-default .hidden-menu .close-menu {
+      transition: all ease-in-out 200ms; }
+      .navbar-default .hidden-menu .close-menu:hover {
+        cursor: pointer;
+        color: grey; }
   .navbar-default .menu {
     list-style: none; }
     .navbar-default .menu img {

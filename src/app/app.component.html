@@ -13,7 +13,17 @@
  </div>
  <!--PHONE NAV MENU-->
  <ul class="phone-nav hidden-sm hidden-md hidden-lg">
-   <li class="menu"><a href="#"><img src="assets/img/menu.png" alt="navigation"></a></li>
+   <li class="menu"><img src="assets/img/menu.png" alt="navigation"></li>
  </ul>
+ <div class="hidden-menu">
+   <ul class="nav navbar-nav">
+     <li><a routerLink="">About</a></li>
+     <li><a routerLink="log-in">Sign Up</a></li>
+     <li><a routerLink="">Movies</a></li>
+     <li><a routerLink="">TV</a></li>
+     <li><a routerLink="">People</a></li>
+     <h5 class="close-menu">close X</h5>
+   </ul>
+ </div>
 </nav>
 <router-outlet></router-outlet>

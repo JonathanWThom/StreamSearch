@@ -32,6 +32,27 @@ body {
       padding-left: 0px;
     }
   }
+  .hidden-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    text-align: center;
+    background: rgba(255,255,255, 1);
+    width: 100vw;
+    transform: translate(-50%, 0);
+    a {
+      font-size: 1.2em;
+      border-bottom: 1px solid lightgrey;
+    }
+    .close-menu {
+      transition: all ease-in-out 200ms;
+     &:hover {
+       cursor: pointer;
+       color: grey;
+     }
+    }
+  }
   .menu {
     list-style: none;
     img {
