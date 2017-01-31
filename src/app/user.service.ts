@@ -72,6 +72,7 @@ export class UserService {
         favorites = [];
       }
 
+      console.log(fbUser);
       //if the list does not already include the new movie
       //push updates to firebase
       if (!favorites.includes(movieId)) {
@@ -83,58 +84,5 @@ export class UserService {
       }
     })
 
-    // var userFB = this.af.database.object('/users/' + userKey);
-    // userFB.update({
-    //   "favoriteMovies": userFB.favoriteMovies.push(movieId)
-    // });
-    // this.users.forEach(function(usersFB) {
-    //   usersFB.forEach(function(userFB) {
-    //     if (userFB.uid === user.google.uid) {
-    //       console.log(userFB);
-    //       if (!userFB.favoriteMovies) {
-    //         userFB['favoriteMovies'] = [];
-    //       }
-    //       console.log(userFB.favoriteMovies);
-    //       userFB.favoriteMovies.push(movieId);
-    //       that.af.database.object('/users/' + userFB.$key).update({
-    //         "favoriteMovies": userFB.favoriteMovies
-    //       })
-    //     }
-    //   })
-
-    // })
-
-
-    // this.users.subscribe(users => {
-    //   for(var i=0; i < users.length; i++) {
-    //     if(users[i].uid === user.google.uid) {
-    //       if (!users[i].favoriteMovies){
-    //         users[i]['favoriteMovies'] = [];
-    //         console.log(users[i]['favoriteMovies']);
-    //       }
-    //       users[i].favoriteMovies.push(movieId);
-    //       console.log(users[i].favoriteMovies);
-    //       this.users = users;
-    //       this.af.database.object('/users/' + users[i].$key).update({
-    //         "favoriteMovies": users[i].favoriteMovies
-    //       });
-    //       return;
-    //     } else {
-    //       console.log("User Log In Error");
-    //     }
-    //   }
-    //   return;
-    // });
   }
 }
-//   this.users.subscribe(users => {
-//   //
-// });
-//   for (var i = 0; i < users.length; i++) {
-//     if(users[i].uid === inputtedUser.uid) {
-//       return;
-//     }
-//   }
-//   var newUser = new User(inputtedUser.google.uid, inputtedUser.google.displayName, inputtedUser.google.photoURL);
-//   this.users.push(newUser);
-// });

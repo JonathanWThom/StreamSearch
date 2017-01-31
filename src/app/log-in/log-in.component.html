@@ -7,5 +7,6 @@
   <div *ngIf="user">
     <button type="button" class="btn btn-default" md-raised-button (click)="logout()">Log Out</button>
     <h5>You are logged in as {{user?.google.displayName}}</h5>
+    <app-user-favorites></app-user-favorites>
   </div>
 </div>
