@@ -1,5 +1,6 @@
 <div *ngFor="let favorite of favoriteMovies">
-  hey
-  {{favorite}}
+  {{favorite.title}}
+  <div *ngFor="let source of favorite.sources">
+    {{source.display_name}}
+  </div>
 </div>
-something!!!!!
