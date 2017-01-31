@@ -11,16 +11,9 @@ import { UserService } from '../user.service';
 export class LogInComponent implements OnInit {
 user = null;
   constructor(public af: AngularFire, private us: UserService) {
-    this.af.auth.subscribe(user => {
-      if(user) {
-        this.user = user;
-        ///check to see if user already exists with service
-        // ;
-      } else {
-        //user not logged in
-        this.user = null;
-      }
-    })
+    us.checkForUser().subscribe(user => {
+      this.user = user;
+    });
    }
 
   ngOnInit() {
@@ -28,13 +21,16 @@ user = null;
   }
 
   login() {
-    var loginReturn = this.us.login();
+    this.us.login().then(promise => {
+      this.us.findOrMakeUser(this.user);
+    });
     // console.log('in log in' + this.user);
-    this.us.findOrMakeUser(this.user);
+
     console.log(this.user);
   }
 
   logout() {
     this.us.logout();
+    this.user = null;
   }
 }

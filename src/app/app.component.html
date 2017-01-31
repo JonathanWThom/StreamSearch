@@ -5,7 +5,8 @@
  <div class="links">
    <ul class="nav navbar-nav hidden-xs">
      <li><a routerLink="">About</a></li>
-     <li><a routerLink="log-in">Sign Up</a></li>
+     <li *ngIf="!user"><a routerLink="log-in">Sign Up</a></li>
+     <li *ngIf="user"><a routerLink="log-in">User Account</a></li>
      <li><a routerLink="">Movies</a></li>
      <li><a routerLink="">TV</a></li>
      <li><a routerLink="">People</a></li>
@@ -19,7 +20,8 @@
    <ul class="nav navbar-nav">
      <li><a routerLink="">Home</a></li>
      <li><a routerLink="">About</a></li>
-     <li><a routerLink="log-in">Sign Up</a></li>
+     <li *ngIf="!user"><a routerLink="log-in">Sign Up</a></li>
+     <li *ngIf="user"><a routerLink="log-in">User Account</a></li>
      <li><a routerLink="">Movies</a></li>
      <li><a routerLink="">TV</a></li>
      <li><a routerLink="">People</a></li>

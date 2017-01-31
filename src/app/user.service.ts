@@ -5,6 +5,7 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable, AuthProv
 @Injectable()
 export class UserService {
   users: any = [];
+  user;
  constructor(private af: AngularFire) {
    this.users = af.database.list('/users');
  }
@@ -31,7 +32,21 @@ export class UserService {
       this.users.push(newUser);
     })
 
-}
+  }
+
+  checkForUser(){
+    return this.af.auth.map(user => {
+      if(user) {
+        return user;
+        ///check to see if user already exists with service
+        // ;
+      } else {
+        //user not logged in
+        return null;
+      }
+    })
+    
+  }
 }
 //   this.users.subscribe(users => {
 //   //
