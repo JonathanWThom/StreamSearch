@@ -68,7 +68,10 @@ export class MovieDetailComponent implements OnInit {
     });
   }
   navigateToActorById(actorId: string){
-    this.router.navigate(['actor', actorId]);
+    this.router.navigate(['person', 'cast',actorId]);
+  }
+  getDirectorById(directorId:string){
+    this.router.navigate(['person', 'crew',directorId]);
   }
 
 }

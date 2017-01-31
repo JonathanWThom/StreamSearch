@@ -1,9 +1,12 @@
-<h1>actor detail</h1>
+<h1>{{actor?.name}}</h1>
 <p>
-  {{actor?.name}}
+  {{role}}
 </p>
+
 <div *ngFor="let credit of credits" (click)="navigateToMovie(credit?.id)">
   <p>{{credit?.title}}</p>
-  <p>Portrayed: {{credit?.character}}</p>
+  <p *ngIf="role === 'cast'">Portrayed: {{credit?.character}}</p>
+  <p *ngIf="credit?.job === 'Director'">Role: {{credit?.job}}</p>
+
   <img src={{credit?.imageUrl}} alt="" />
 </div>
