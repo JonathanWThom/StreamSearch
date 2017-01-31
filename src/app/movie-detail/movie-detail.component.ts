@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MovieService } from '../movie.service';
 import { Movie } from '../movie.model';
+import { AngularFire, AuthProviders, FirebaseObjectObservable } from 'angularfire2';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.css'],
-  providers: [MovieService]
+  providers: [MovieService, UserService]
 })
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
@@ -19,11 +21,24 @@ export class MovieDetailComponent implements OnInit {
   onHbo: string = null;
   onItunes: string = null;
 
+  user = null;
+  userFavoriteMovies;
+  fbUser: FirebaseObjectObservable<any>;
+  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
+    us.checkForUser().subscribe(user => {
+      this.user = user;
+      if (this.user) {
+        this.fbUser = this.us.getUserFB(this.user);
+        this.fbUser.subscribe(fbUser => {
+          this.userFavoriteMovies = fbUser.favoriteMovies;
+        })
+      }
+    });
+  }
 
-
-  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+
     var movieID;
     this.activatedRoute.params.forEach((urlParametersArray) => {
       movieID = urlParametersArray['id'];
@@ -75,5 +90,9 @@ export class MovieDetailComponent implements OnInit {
     this.router.navigate(['person', crewType, crewId]);
   }
 
+
+  addToFavorites(movieId: string) {
+    this.us.addToFavorites(movieId, this.user);
+  }
 
 }

@@ -32,4 +32,6 @@
     {{castMember.name}}
   </p>
 
+<div *ngIf="user">
+  <button (click)="addToFavorites(movie.id, user)">Add to Favorites</button>
 </div>
