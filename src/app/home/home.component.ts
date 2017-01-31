@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
         this.topMovies.push(this.allTopMovies[i]);
       }
     });
-    console.log(this.topMovies);
   }
 
 }
