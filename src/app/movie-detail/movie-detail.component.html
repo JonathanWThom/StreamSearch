@@ -2,5 +2,7 @@
 <p>
   {{movie?.title}}
 </p>
-
+<p *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
+  {{castMember.name}}
+</p>
 <img [src]="movie?.backdrop" alt="{{movie?.title}}">
