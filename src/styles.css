@@ -41,14 +41,21 @@ body {
       font-size: 1.2em;
       border-bottom: 1px solid lightgrey; }
     .navbar-default .hidden-menu .close-menu {
-      transition: all ease-in-out 200ms; }
+      transition: all ease-in-out 200ms;
+      padding: 20px; }
       .navbar-default .hidden-menu .close-menu:hover {
         cursor: pointer;
         color: grey; }
   .navbar-default .menu {
-    list-style: none; }
+    margin-top: 12px;
+    margin-right: 20px;
+    list-style: none;
+    transition: all ease-in-out 200ms; }
     .navbar-default .menu img {
       width: 60px;
       filter: invert(0.4); }
+    .navbar-default .menu:hover {
+      cursor: pointer;
+      filter: invert(0.8); }
 
 /*# sourceMappingURL=styles.css.map */

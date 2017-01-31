@@ -47,6 +47,7 @@ body {
     }
     .close-menu {
       transition: all ease-in-out 200ms;
+      padding: 20px;
      &:hover {
        cursor: pointer;
        color: grey;
@@ -54,10 +55,17 @@ body {
     }
   }
   .menu {
+    margin-top: 12px;
+    margin-right: 20px;
     list-style: none;
+    transition: all ease-in-out 200ms;
     img {
       width: 60px;
       filter: invert(0.4);
+    }
+    &:hover {
+      cursor: pointer;
+      filter: invert(0.8);
     }
   }
 }
