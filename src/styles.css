@@ -23,8 +23,11 @@ body {
   .navbar-default .links {
     padding-right: 40px;
     margin-left: auto; }
-  .navbar-default .navbar-brand {
-    font-size: 1.5em; }
+  .navbar-default .navbar-header {
+    margin-left: 7%; }
+    .navbar-default .navbar-header .navbar-brand {
+      font-size: 2.3em;
+      padding-left: 0px; }
   .navbar-default .menu {
     list-style: none; }
     .navbar-default .menu img {
