@@ -3,6 +3,9 @@
   <button type="button" class="btn btn-default" md-raised-button (click)="logout()">Log Out</button>
 </div>
 
+<div *ngIf="!user">
+  <h1>There is not a user</h1>
+</div>
 <div *ngIf="user">
-  {{user.displayName}}
+  <h1>There is a user</h1>
 </div>

@@ -9,7 +9,7 @@ import { UserService } from '../user.service';
   providers: [UserService]
 })
 export class LogInComponent implements OnInit {
-user = {};
+user = null;
   constructor(public af: AngularFire, private us: UserService) {
     this.af.auth.subscribe(user => {
       if(user) {
@@ -18,18 +18,20 @@ user = {};
         // ;
       } else {
         //user not logged in
-        this.user = {};
+        this.user = null;
       }
     })
    }
 
   ngOnInit() {
+    console.log(this.user);
   }
 
   login() {
     var loginReturn = this.us.login();
-    console.log('in log in' + this.user);
+    // console.log('in log in' + this.user);
     this.us.findOrMakeUser(this.user);
+    console.log(this.user);
   }
 
   logout() {

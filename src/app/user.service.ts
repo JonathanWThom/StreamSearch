@@ -16,12 +16,11 @@ export class UserService {
  }
 
  logout() {
+   console.log('got in to log out function');
    return this.af.auth.logout();
  }
 
   findOrMakeUser(user: any) {
-    console.log(user);
-    debugger;
     this.users.subscribe(users => {
       for(var i = 0; i < users.length; i++) {
         if(users[i].uid === user.google.uid) {
