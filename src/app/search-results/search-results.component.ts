@@ -24,14 +24,12 @@ export class SearchResultsComponent implements OnInit {
       this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
         this.apiResults = x;
         this.itemsToDisplay = this.apiResults.results;
-        console.log(this.itemsToDisplay);
       });
     });
   }
 
   goToPage(id) {
     id = id.toString();
-    console.log(id);
     this.router.navigate(['movie', id]);
   }
 

@@ -11,6 +11,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { masterFirebaseConfig } from './api-keys';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { LogInComponent } from './log-in/log-in.component';
+import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -20,6 +21,8 @@ export const firebaseConfig = {
 };
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,8 @@ export const firebaseConfig = {
     MovieDetailComponent,
     SearchComponent,
     SearchResultsComponent,
-    LogInComponent
+    LogInComponent,
+    ActorDetailComponent
   ],
   imports: [
     BrowserModule,

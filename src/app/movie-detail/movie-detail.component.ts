@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MovieService } from '../movie.service';
 import { Movie } from '../movie.model';
 
@@ -12,33 +12,36 @@ import { Movie } from '../movie.model';
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
   movie: Movie;
-  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute) { }
+  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     var movieID;
     this.activatedRoute.params.forEach((urlParametersArray) => {
       movieID = urlParametersArray['id'];
     });
+
     // this.movieApiDetails['details'] = this.movieService.getMovieDetails(movieID).title;
     this.movieService.getMovieDetails(movieID).subscribe(response => {
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      this.movie = new Movie(res.title, res.id, res.cast, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.tmdb_id);
+      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theatres, res.release_date, res.rotten_tomatoes, res.metacritic, res.poster_small, res.poster_medium, res.poster_large, res.themoviedb, res.rating);
 
-      this.movieService.getMovieImages(movieID).subscribe(response => {
+      this.movieService.getMovieImages(this.movie.themoviedb.toString()).subscribe(response => {
         this.movieApiDetails['images'] = response;
         this.movieApiDetails['images'] = JSON.parse(this.movieApiDetails['images']._body);
-        this.movieApiDetails['images'] = this.movieApiDetails['images'].results.backgrounds;
-        this.movie.backgrounds = this.movieApiDetails['images'].map(function(image) {
-          return image;
-        })
+        this.movie.backdrop = this.movieService.backdropPrefix + this.movieApiDetails['images'].backdrop_path;
+      })
+      this.movieService.getMovieCast(movieID).subscribe(res => {
+          this.movieApiDetails['cast'] = response;
+          this.movieApiDetails['cast'] = JSON.parse(this.movieApiDetails['cast']._body);
+          this.movie.cast = this.movieApiDetails['cast'].cast;
+          console.log(this.movie.cast[0]['name'])
       })
     });
-
-
-    // this.movieApiDetails['images'] = this.movieService.getMovieImages(movieID);
-    // console.log(this.movieApiDetails['details']);
+  }
+  navigateToActorById(actorId: string){
+    this.router.navigate(['actor', actorId]);
   }
 
 }
