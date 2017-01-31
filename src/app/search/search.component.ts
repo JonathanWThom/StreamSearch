@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  searchedCategory: string;
+  searchedCategory: string = 'movie';
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -31,6 +31,14 @@ export class SearchComponent implements OnInit {
 
  tvActive() {
    if (this.searchedCategory === 'show') {
+     return 'active';
+   } else {
+     return 'inactive';
+   }
+ }
+
+ peopleActive() {
+   if (this.searchedCategory === 'person') {
      return 'active';
    } else {
      return 'inactive';

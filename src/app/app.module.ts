@@ -8,7 +8,19 @@ import { routing } from './app.routing';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { masterFirebaseConfig } from './api-keys';
+import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
+import { LogInComponent } from './log-in/log-in.component';
 import { ActorDetailComponent } from './actor-detail/actor-detail.component';
+
+export const firebaseConfig = {
+  apiKey: masterFirebaseConfig.apiKey,
+  authDomain: masterFirebaseConfig.authDomain,
+  databaseURL: masterFirebaseConfig.databaseURL,
+  storageBucket: masterFirebaseConfig.storageBucket
+};
+
+
 
 
 @NgModule({
@@ -18,13 +30,18 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
     MovieDetailComponent,
     SearchComponent,
     SearchResultsComponent,
+    LogInComponent,
     ActorDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    AngularFireModule.initializeApp(firebaseConfig, {
+      provider: AuthProviders.Google,
+      method: AuthMethods.Popup
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

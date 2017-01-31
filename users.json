@@ -1,0 +1,7 @@
+{ "users": [
+  {
+    "uid": "1234",
+    "name": "TestUser",
+    "image": "http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg"
+  }
+]}

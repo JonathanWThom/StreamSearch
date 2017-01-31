@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+nav .menu {
+  list-style: none; }
+
 .active {
-  color: blue;
-}
+  color: blue; }
 
 .inactive {
-  color: black;
-}
+  color: black; }
+
+/*# sourceMappingURL=styles.css.map */
