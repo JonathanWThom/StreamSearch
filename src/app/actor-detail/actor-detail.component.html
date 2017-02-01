@@ -1,38 +1,41 @@
-<h1>{{actor?.name}}</h1>
-<div class="filterByRole">
-  <a [class]="actorActive()" (click)="toggleShow('showMoviesActed')">Actor</a>
-  <a [class]="directorActive()" (click)="toggleShow('showMoviesDirected')">Director</a>
-  <a [class]="writerActive()" (click)="toggleShow('showMoviesWritten')">Writer</a>
-  <a [class]="producerActive()" (click)="toggleShow('showMoviesProduced')">Producer</a>
-</div>
-<div class="row" *ngIf="showMoviesActed">
-  <h2>As Actor:</h2>
-  <div *ngFor="let credit of moviesActedIn" class="col-sm-2" (click)="navigateToMovie(credit?.id, credit?.media_type)">
-    <p>{{credit?.title}}</p>
-    <p>Portrayed: {{credit?.character}}</p>
-    <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+<div class="container">
+  <h1>{{actor?.name}}</h1>
+  <div class="filterByRole">
+    <button [class]="allActive()" (click)="toggleShow('showAll')">All</button>
+    <button [class]="actorActive()" (click)="toggleShow('showMoviesActed')">Actor</button>
+    <button [class]="directorActive()" (click)="toggleShow('showMoviesDirected')">Director</button>
+    <button [class]="writerActive()" (click)="toggleShow('showMoviesWritten')">Writer</button>
+    <button [class]="producerActive()" (click)="toggleShow('showMoviesProduced')">Producer</button>
   </div>
-</div>
+  <div class="row" *ngIf="showMoviesActed">
+    <h2>As Actor:</h2>
+    <div *ngFor="let credit of moviesActedIn" class="col-sm-2" (click)="navigateToMovie(credit?.id, credit?.media_type)">
+      <p>{{credit?.title}}</p>
+      <p>Portrayed: {{credit?.character}}</p>
+      <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+    </div>
+  </div>
 
-<div class="row" *ngIf="showMoviesDirected">
-  <h2>As Director:</h2>
-  <div *ngFor="let credit of moviesDirected" class="col-sm-4 hey" (click)="navigateToMovie(credit?.id, credit?.media_type)">
-    <p>{{credit?.title}}</p>
-    <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}">
+  <div class="row" *ngIf="showMoviesDirected">
+    <h2>As Director:</h2>
+    <div *ngFor="let credit of moviesDirected" class="col-sm-4 hey" (click)="navigateToMovie(credit?.id, credit?.media_type)">
+      <p>{{credit?.title}}</p>
+      <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}">
+    </div>
   </div>
-</div>
 
-<div class="row" *ngIf="showMoviesWritten">
-  <h2>As Writer:</h2>
-  <div *ngFor="let credit of moviesWritten" class="col-sm-4" (click)="navigateToMovie(credit?.id, credit?.media_type)">
-    <p>{{credit?.title}}</p>
-    <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+  <div class="row" *ngIf="showMoviesWritten">
+    <h2>As Writer:</h2>
+    <div *ngFor="let credit of moviesWritten" class="col-sm-4" (click)="navigateToMovie(credit?.id, credit?.media_type)">
+      <p>{{credit?.title}}</p>
+      <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+    </div>
   </div>
-</div>
-<div class="row" *ngIf="showMoviesProduced">
-  <h2>As Producer:</h2>
-  <div *ngFor="let credit of moviesProduced" class="col-sm-4" (click)="navigateToMovie(credit?.id, credit?.media_type)">
-    <p>{{credit?.title}}</p>
-    <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+  <div class="row" *ngIf="showMoviesProduced">
+    <h2>As Producer:</h2>
+    <div *ngFor="let credit of moviesProduced" class="col-sm-4" (click)="navigateToMovie(credit?.id, credit?.media_type)">
+      <p>{{credit?.title}}</p>
+      <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+    </div>
   </div>
 </div>

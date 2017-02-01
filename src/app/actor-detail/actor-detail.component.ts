@@ -26,6 +26,7 @@ export class ActorDetailComponent implements OnInit {
   showMoviesDirected: boolean = true;
   showMoviesWritten: boolean = true;
   showMoviesProduced: boolean = true;
+  selectedRole: string = "showAll";
 
 
 
@@ -89,26 +90,60 @@ export class ActorDetailComponent implements OnInit {
   }
 
   toggleShow(role) {
+    this.selectedRole = role;
     this.showMoviesActed = false;
     this.showMoviesDirected = false;
     this.showMoviesWritten = false;
     this.showMoviesProduced = false;
-    this[role] = true;
+
+    if (role === 'showAll') {
+      this.showMoviesActed = true;
+      this.showMoviesDirected = true;
+      this.showMoviesWritten = true;
+      this.showMoviesProduced = true;
+    } else {
+      this[role] = true;
+    }
+
   }
 
   actorActive() {
-
+    if (this.selectedRole === 'showMoviesActed' || this.selectedRole === 'showAll') {
+      return 'btn btn-success'
+    } else {
+      return 'btn btn-default'
+    }
   }
 
   directorActive() {
-
+    if (this.selectedRole === 'showMoviesDirected' || this.selectedRole === 'showAll') {
+      return 'btn btn-success'
+    } else {
+      return 'btn btn-default'
+    }
   }
 
   writerActive() {
-
+    if (this.selectedRole === 'showMoviesWritten' || this.selectedRole === 'showAll') {
+      return 'btn btn-success'
+    } else {
+      return 'btn btn-default'
+    }
   }
 
   producerActive() {
+    if (this.selectedRole === 'showMoviesProduced' || this.selectedRole === 'showAll') {
+      return 'btn btn-success'
+    } else {
+      return 'btn btn-default'
+    }
+  }
 
+  allActive() {
+    if (this.selectedRole === "showAll") {
+      return 'btn btn-success'
+    } else {
+      return 'btn btn-default'
+    }
   }
 }
