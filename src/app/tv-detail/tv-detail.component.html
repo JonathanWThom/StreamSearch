@@ -14,22 +14,22 @@
         </div>
         <div class="col-sm-4">
           <div *ngIf="user" class="userButtons">
-            <button (click)="addToFavorites(foundShow?.id)" class="btn btn-md btn-success favoriteButtons" *ngIf="!userFavorite">Add to Favorites</button><br>
-            <button (click)="removeFromFavorites(foundShow?.id)" class="btn btn-md btn-danger favoriteButtons" *ngIf="userFavorite">Remove from Favorites</button>
+            <button (click)="addToFavorites()" class="btn btn-md btn-success favoriteButtons" *ngIf="!userFavorite">Add to Favorites</button><br>
+            <button (click)="removeFromFavorites()" class="btn btn-md btn-danger favoriteButtons" *ngIf="userFavorite">Remove from Favorites</button>
           </div>
         </div>
       </div>
 
     </div>
   </div>
-  <!-- <h3 class="starringTitle">Starring Cast</h3>
+  <h3 class="starringTitle">Starring Cast</h3>
   <div class="starring">
-    <div class="topBilled" *ngFor='let actor of actorsImages' (click)=navigateToActorById(actor[2])>
-      <p><a>{{actor[0]}}</a></p>
-      <p>{{actor[3]}}</p>
-      <img src={{actor[1]}}>
+    <div class="topBilled">
+      <!-- <p><a>{{actor[0]}}</a></p> -->
+      <!-- <p>{{actor[3]}}</p> -->
+      <!-- <img src={{actor[1]}}> -->
     </div>
-  </div> -->
+  </div>
   <div class="cast">
     <h5>Cast</h5>
     <div *ngFor='let castMember of foundShow?.cast' (click)="navigateToActorById(castMember.id)">

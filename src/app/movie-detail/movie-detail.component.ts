@@ -25,22 +25,25 @@ export class MovieDetailComponent implements OnInit {
   onItunes: string = null;
 
   user = null;
-  userFavorite: boolean;
-
+  userFavorite: boolean = false;
   fbUser: FirebaseObjectObservable<any>;
+
   constructor(private movieService: MovieService, private actorService: ActorService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
     us.checkForUser().subscribe(user => {
       this.user = user;
+
       if (this.user) {
         this.fbUser = this.us.getUserFB(this.user);
         this.fbUser.subscribe(fbUser => {
           if (!fbUser.favoriteMovies){
             fbUser.favoriteMovies = [];
           }
-          if (fbUser.favoriteMovies && this.movie){
-            this.userFavorite = fbUser.favoriteMovies.includes(this.movie.id);
-            console.log("userFavorite set.");
-          }
+          var that = this;
+          fbUser.favoriteMovies.forEach(function(foundMovie) {
+            if (that.movie && foundMovie.id === that.movie.id){
+              that.userFavorite = true;
+            }
+          })
             // return favorites.includes(this.movie.id);
         })
       }
@@ -104,6 +107,7 @@ export class MovieDetailComponent implements OnInit {
       })
     })
   }
+
   navigateToActorById(actorId: string){
     this.router.navigate(['person', 'cast',actorId]);
   }
@@ -111,10 +115,13 @@ export class MovieDetailComponent implements OnInit {
     this.router.navigate(['person', crewType, crewId]);
   }
 
-  addToFavorites(movieId: string) {
-    this.us.addToFavoriteMovies(movieId, this.user);
+  addToFavorites(): void{
+    this.userFavorite = true;
+    this.us.addToFavoriteMovies(this.movie, this.user);
   }
-  removeFromFavorites(movieId: string){
-    this.us.removeFromFavoriteMovies(movieId, this.user);
+
+  removeFromFavorites(): void{
+    this.userFavorite = false;
+    this.us.removeFromFavoriteMovies(this.movie, this.user);
   }
 }

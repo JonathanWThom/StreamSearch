@@ -1,26 +1,28 @@
 <h2>Favorite Movies</h2>
-<div class="row" *ngFor="let movie of favoriteMovies">
-  <img src={{movie.poster_medium}} alt={{movie.title}} (click)="navigateToMovie(movie.id)">
-  <button class="btn" *ngIf="movie.id" (click)="removeFavoriteMovies(movie.id)">Remove from favorites</button>
-  <a *ngFor="let source of movie.sources">
-    <a href={{source.link}} *ngIf="source.source === 'hulu'">
-      <img src="/assets/img/hulu-icon.png" alt="Hulu Icon">
-    </a>
-    <a href={{source.link}} *ngIf="source.source === 'amazon_prime'">
-      <img src="/assets/img/amazon-icon.png" alt="Amazon Icon">
-    </a>
-    <a href={{source.link}} *ngIf="source.source === 'hbo_go' || source.source === 'hbo_now'">
-      <img src="/assets/img/hbo-go-icon.png" alt="HBO GO Icon">
-    </a>
-    <a href={{source.link}} *ngIf="source.source === 'netflix'">
-      <img src="/assets/img/netflix-icon.png" alt="Netflix Icon">
-    </a>
-  </a>
+<div class="mediaContainer" *ngFor="let movie of fbUser?.favoriteMovies">
+  <button class="btn btn-danger" (click)="removeFavoriteMovies(movie)">X</button>
+  <img class="poster" src={{movie.poster_medium}} alt={{movie.title}} (click)="navigateToMovie(movie.id)">
+  <div class="sourceContainer">
+    <span *ngFor="let source of movie.sources">
+      <a class="source" href={{source.link}} *ngIf="source.source === 'hulu' || source.source === 'hulu_plus'">
+        <img src="/assets/img/hulu-icon.png" alt="Hulu Icon">
+      </a>
+      <a class="source" href={{source.link}} *ngIf="source.source === 'amazon_prime'">
+        <img src="/assets/img/amazon-icon.png" alt="Amazon Icon">
+      </a>
+      <a class="source" href={{source.link}} *ngIf="source.source === 'hbo_go' || source.source === 'hbo_now'">
+        <img src="/assets/img/hbo-go-icon.png" alt="HBO GO Icon">
+      </a>
+      <a class="source" href={{source.link}} *ngIf="source.source === 'netflix'">
+        <img src="/assets/img/netflix-icon.png" alt="Netflix Icon">
+      </a>
+    </span>
+  </div>
 </div>
 
 <h2>Favorite TV Shows</h2>
-<div class="row" *ngFor="let show of favoriteShows">
-  <img src={{show.poster}} alt={{show.title}} (click)="navigateToShow(show.id)">
-  <button class="btn" *ngIf="show.id" (click)="removeFavoriteShows(show.id)">Remove from favorites</button>
-  <span>{{show.network}}</span>    
+<div class="mediaContainer" *ngFor="let show of fbUser?.favoriteShows">
+  <button class="btn btn-danger" (click)="removeFavoriteShows(show)">X</button>
+  <img class="poster" src={{show.poster}} alt={{show.title}} (click)="navigateToShow(show.id)">
+  <span>{{show.network}}</span>
 </div>

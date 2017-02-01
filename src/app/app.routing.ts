@@ -32,6 +32,10 @@ const appRoutes: Routes = [
   {
     path: 'person/:role/:id',
     component: ActorDetailComponent
+  },
+  {
+    path: 'person/:id',
+    component: ActorDetailComponent
   }
 ];
 

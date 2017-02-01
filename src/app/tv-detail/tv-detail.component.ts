@@ -50,11 +50,13 @@ export class TvDetailComponent implements OnInit {
     })
   }
 
-  addToFavorites(showId: string) {
-    this.us.addToFavoriteShows(showId, this.user);
+  addToFavorites() {
+    this.userFavorite = true;
+    this.us.addToFavoriteShows(this.show, this.user);
   }
-  removeFromFavorites(showId: string){
-    this.us.removeFromFavoriteShows(showId, this.user);
+  removeFromFavorites(){
+    this.userFavorite = false;
+    this.us.removeFromFavoriteShows(this.show, this.user);
   }
 
   navigateToActorById(castMemberID: string){

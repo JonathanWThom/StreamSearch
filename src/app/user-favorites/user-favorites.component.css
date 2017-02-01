@@ -1,0 +1,31 @@
+.mediaContainer {
+  position: relative;
+  margin-bottom: 10px;
+}
+button {
+  position: absolute;
+  border-radius: 0;
+}
+.sourceContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 200px;
+  top: 0;
+}
+.source {
+  position: relative;
+}
+.source img {
+  margin-bottom: 5px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  position: relative;
+  left: 10px;
+  top: 0;
+  vertical-align: top;
+}
+.poster {
+  width: 200px;
+}
