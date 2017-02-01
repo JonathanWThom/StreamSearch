@@ -43,12 +43,13 @@
   <div class="starring">
     <div class="topBilled" *ngFor='let actor of actorsImages' (click)=navigateToActorById(actor[2])>
       <p><a>{{actor[0]}}</a></p>
+      <p>{{actor[3]}}</p>
       <img src={{actor[1]}}>
     </div>
   </div>
   <div class="cast">
     <h5>Cast</h5>
     <div *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
-      <p><a>{{castMember.name}}</a></p>
+      <p><a>{{castMember.name}}</a> - {{castMember.character_name}}</p>
     </div>
   </div>

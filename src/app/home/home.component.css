@@ -1,0 +1,17 @@
+.topMedia {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+.topMedia img {
+  margin: 10px;
+}
+h2 {
+  margin: auto;
+  text-align: center;
+  max-width: 1000px;
+  margin-bottom: 20px;
+}

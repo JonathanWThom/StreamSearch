@@ -1,4 +1,13 @@
 <app-search></app-search>
-<div *ngFor="let movie of topMovies">
-  <img src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.title}}">
+<h2>Popular Movies</h2>
+<div class="topMedia">
+  <div *ngFor="let movie of topMovies" (click)="getMovie(movie.id)">
+    <img src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.title}}">
+  </div>
+</div>
+<h2>Popular Shows</h2>
+<div class="topMedia">
+  <div *ngFor="let movie of topMovies" (click)="getMovie(movie.id)">
+    <img src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.title}}">
+  </div>
 </div>
