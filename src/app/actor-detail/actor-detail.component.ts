@@ -36,7 +36,7 @@ export class ActorDetailComponent implements OnInit {
       actorTmdbID = this.newActor.themoviedb;
 
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
-        var posterPrefix = "http://image.tmdb.org/t/p/w185/";
+        var posterPrefix = "https://image.tmdb.org/t/p/w185/";
         newCredits = creditResponse;
         newCredits = JSON.parse(newCredits._body);
         if(this.role === "cast"){
@@ -66,7 +66,6 @@ export class ActorDetailComponent implements OnInit {
       this.movieService.getMovieByTmdbID(tmdbID).subscribe(response => {
         foundMovie = response;
         foundMovie = JSON.parse(foundMovie._body);
-        console.log(foundMovie)
         if(Object.keys(foundMovie).length === 0){
           alert('No streaming data available for this film. Try another.')
         } else {
@@ -74,7 +73,7 @@ export class ActorDetailComponent implements OnInit {
         }
       })
     } else if (media_type === "tv" ){
-      alert("build navigateToShow function")
+      this.router.navigate(['show', tmdbID]);
     }
   }
 }
