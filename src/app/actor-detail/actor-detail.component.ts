@@ -37,7 +37,7 @@ export class ActorDetailComponent implements OnInit {
       actorTmdbID = this.newActor.themoviedb;
 
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
-        var posterPrefix = "http://image.tmdb.org/t/p/w185/";
+        var posterPrefix = "https://image.tmdb.org/t/p/w185/";
         newCredits = creditResponse;
         newCredits = JSON.parse(newCredits._body);
         if(this.role === "cast"){
