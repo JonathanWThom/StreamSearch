@@ -29,7 +29,7 @@ export class MovieService {
   }
 
   getShowDetails(showID: string){
-    return this.http.get("http://api-public.guidebox.com/v2/show/".concat(showID).concat("/?api_key=").concat(Keys.guidebox))
+    return this.http.get("https://api.themoviedb.org/3/tv/" + showID + "?api_key=" + Keys.tmdb + "&language=en-US")
   }
 
   getMovieImages(tmdbID: string){

@@ -70,7 +70,7 @@ export class ActorDetailComponent implements OnInit {
         this.router.navigate(['movie', foundMovie.id]);
       })
     } else if (media_type === "tv" ){
-      alert("build navigateToShow function")
+      this.router.navigate(['show', tmdbID]);
     }
   }
 }

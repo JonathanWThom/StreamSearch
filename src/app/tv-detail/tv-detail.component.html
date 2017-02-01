@@ -1,3 +1,19 @@
-<p>
-  tv-detail works!
-</p>
+<app-search></app-search>
+
+<div class="wrap">
+  <div class="titleSection">
+    <div class="text">
+      <h1 class="title">{{show?.name}}</h1>
+      <p>{{show?.overview}}</p>
+      <div class="row">
+        <div class="col-sm-4">
+          <div *ngIf="user" class="userButtons">
+            <!-- <button (click)="addToFavorites(show.id)" class="btn btn-md btn-success favoriteButtons">Add to Favorites</button><br>
+            <button (click)="removeFromFavorites(show.id)" class="btn btn-md btn-danger favoriteButtons">Remove from Favorites</button> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
