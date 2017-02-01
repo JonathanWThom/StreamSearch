@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -7,8 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  searchedCategory: string = 'movie';
-  constructor(private router: Router) { }
+  searchedCategory: string;
+
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.params.forEach((urlParameters) => {
+      console.log(urlParameters);
+      if (urlParameters['category']) {
+        this.searchedCategory = urlParameters['category'];
+      } else {
+        this.searchedCategory = 'movie';
+      }
+    });
+    console.log(this.searchedCategory);
+  }
 
   ngOnInit() {
   }
