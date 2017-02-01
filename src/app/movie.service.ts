@@ -6,7 +6,7 @@ import { Keys } from './api-keys';
 
 @Injectable()
 export class MovieService {
-  backdropPrefix = "http://image.tmdb.org/t/p/w1280/";
+  backdropPrefix = "https://image.tmdb.org/t/p/w1280/";
 
   constructor(private http: Http) { }
 
