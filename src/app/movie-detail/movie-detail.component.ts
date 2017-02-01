@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MovieService } from '../movie.service';
+import { ActorService } from '../actor.service';
 import { Movie } from '../movie.model';
 import { AngularFire, AuthProviders, FirebaseObjectObservable } from 'angularfire2';
 import { UserService } from '../user.service';
@@ -9,12 +10,13 @@ import { UserService } from '../user.service';
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.css'],
-  providers: [MovieService, UserService]
+  providers: [MovieService, UserService, ActorService]
 })
 export class MovieDetailComponent implements OnInit {
   movieApiDetails = {};
   movie: Movie;
   topBilled = [];
+  actorsImages = [];
 
   onNetflix: string = null;
   onHulu: string = null;
@@ -25,7 +27,7 @@ export class MovieDetailComponent implements OnInit {
   user = null;
   // userFavoriteMovies;
   fbUser: FirebaseObjectObservable<any>;
-  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
+  constructor(private movieService: MovieService, private actorService: ActorService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
     us.checkForUser().subscribe(user => {
       this.user = user;
       if (this.user) {
@@ -55,8 +57,6 @@ export class MovieDetailComponent implements OnInit {
       this.movie.directors = res.directors;
       this.movie.writers = res.writers;
 
-      console.log(this.movie)
-
       if(this.movie.sources) {
         for(var i = 0; i < this.movie.sources.length; i++) {
           if (this.movie.sources[i]['display_name'] === "Hulu") {
@@ -81,9 +81,23 @@ export class MovieDetailComponent implements OnInit {
           this.movieApiDetails['cast'] = JSON.parse(this.movieApiDetails['cast']._body);
           this.movie.cast = this.movieApiDetails['cast'].cast;
           this.topBilled = this.movie.cast.splice(0,5);
-          console.log(this.topBilled)
+
+          this.topBilled.forEach(actor => {
+            var actorDetails;
+            this.actorService.getActorDetails(actor.id, "cast").subscribe(res => {
+              actorDetails = res;
+              actorDetails = JSON.parse(actorDetails._body);
+              let tempActorThing = []
+              tempActorThing.push(actorDetails.name,actorDetails.images['medium']['url'], actorDetails.id)
+              this.actorsImages.push(tempActorThing)
+
+              // console.log(this.actorsImages)
+              // imagesArray.push  = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
+              // actorTmdbID = this.newActor.themoviedb;
+          })
+        })
       })
-    });
+    })
   }
   navigateToActorById(actorId: string){
     this.router.navigate(['person', 'cast',actorId]);

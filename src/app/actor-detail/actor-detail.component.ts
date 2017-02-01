@@ -32,6 +32,7 @@ export class ActorDetailComponent implements OnInit {
     this.actorService.getActorDetails(personGbID, this.role).subscribe(response => {
       this.newActor = response;
       this.newActor = JSON.parse(this.newActor._body);
+      console.log(this.newActor)
       this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
       actorTmdbID = this.newActor.themoviedb;
 
@@ -39,7 +40,6 @@ export class ActorDetailComponent implements OnInit {
         var posterPrefix = "http://image.tmdb.org/t/p/w185/";
         newCredits = creditResponse;
         newCredits = JSON.parse(newCredits._body);
-        console.log(newCredits)
         if(this.role === "cast"){
           this.credits = newCredits.cast.map(function(res){
           return {'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'character': res.character, 'media_type': res.media_type};
