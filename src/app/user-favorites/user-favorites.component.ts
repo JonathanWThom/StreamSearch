@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { MovieService } from '../movie.service';
 import { Movie } from '../movie.model';
+import { Show } from '../show.model';
 
 @Component({
   selector: 'app-user-favorites',
@@ -17,9 +19,10 @@ export class UserFavoritesComponent implements OnInit {
   favoriteMovies;
   favoriteShows;
   movieApiDetails;
+  showApiDetails;
 
 
-  constructor(private us: UserService, private ms: MovieService) {
+  constructor(private router: Router, private us: UserService, private ms: MovieService) {
     us.checkForUser().subscribe(user => {
       var that = this;
       this.user = user;
@@ -45,6 +48,22 @@ export class UserFavoritesComponent implements OnInit {
             that.favoriteMovies.push(foundMovie);
           });
         })
+        if (!fbUser.favoriteShows) {
+          fbUser.favoriteShows = [];
+        }
+        this.favoriteShows = this.fbUser.favoriteShows;
+        this.favoriteShows.forEach(function(show) {
+          that.ms.getShowDetails(show.toString()).subscribe(response => {
+            that.showApiDetails = response;
+            that.showApiDetails = JSON.parse(that.showApiDetails._body);
+            var res = that.showApiDetails;
+            var foundShow = new Show(res.title, res.id, res.themoviedb, res.overview, res.poster, res.banner, res.rating, res.network, res.cast, res.first_aired);
+
+            console.log(foundShow)
+
+            that.favoriteShows.push(foundShow);
+          });
+        })
       });
 
     });
@@ -53,8 +72,19 @@ export class UserFavoritesComponent implements OnInit {
   ngOnInit() {
   }
 
-  removeFavorite(movieId: string){
-    this.us.removeFromFavorites(movieId, this.user);
+  removeFavoriteMovies(movieId: string){
+    this.us.removeFromFavoriteMovies(movieId, this.user);
   }
 
+  removeFavoriteShows(showId: string){
+    this.us.removeFromFavoriteShows(showId, this.user);
+  }
+
+  navigateToMovie(movieId: string){
+    this.router.navigate(['movie', movieId]);
+  }
+
+  navigateToShow(showId: string) {
+    this.router.navigate(['show', showId]);
+  }
 }

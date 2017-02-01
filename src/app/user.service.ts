@@ -83,7 +83,31 @@ export class UserService {
     })
   }
 
-  removeFromFavorites(movieId: string, user): void{
+  addToFavoriteShows(showId: string, user): void{
+    var that = this;
+    //get firebase user from authentication data
+    this.getUserFB(user).subscribe(fbUser => {
+      //get firebase favorites list and update with new show
+      var favorites;
+      if(fbUser.favoriteShows){
+        favorites = fbUser.favoriteShows;
+      } else {
+        favorites = [];
+      }
+
+      //if the list does not already include the new show
+      //push updates to firebase
+      if (!favorites.includes(showId)) {
+        favorites.push(showId);
+        fbUser.favoriteShows = favorites;
+        that.af.database.object('/users/' + fbUser.$key).update({
+          "favoriteShows": fbUser.favoriteShows
+        });
+      }
+    })
+  }
+
+  removeFromFavoriteMovies(movieId: string, user): void{
     var that = this;
     //get firebase user from authentication data
     this.getUserFB(user).subscribe(fbUser => {
@@ -92,6 +116,19 @@ export class UserService {
         fbUser.favoriteMovies.splice(movieIndex, 1);
         that.af.database.object('/users/' + fbUser.$key).update({
           "favoriteMovies": fbUser.favoriteMovies
+        });
+      }
+    })
+  }
+  removeFromFavoriteShows(showId: string, user): void{
+    var that = this;
+    //get firebase user from authentication data
+    this.getUserFB(user).subscribe(fbUser => {
+      if (fbUser.favoriteShows.includes(showId)) {
+        var movieIndex = fbUser.favoriteShows.indexOf(showId);
+        fbUser.favoriteShows.splice(movieIndex, 1);
+        that.af.database.object('/users/' + fbUser.$key).update({
+          "favoriteShows": fbUser.favoriteShows
         });
       }
     })

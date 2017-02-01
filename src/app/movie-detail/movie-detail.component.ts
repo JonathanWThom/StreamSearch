@@ -115,7 +115,6 @@ export class MovieDetailComponent implements OnInit {
     this.us.addToFavoriteMovies(movieId, this.user);
   }
   removeFromFavorites(movieId: string){
-    this.us.removeFromFavorites(movieId, this.user);
-    this.userFavorite = false;
+    this.us.removeFromFavoriteMovies(movieId, this.user);
   }
 }
