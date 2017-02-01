@@ -57,13 +57,16 @@ export class SearchResultsComponent implements OnInit {
                   movie.subscription_web_sources.forEach(source => {
                     if (source.display_name === this.filter) {
                       this.foundMovies.push(movie);
+                      console.log(this.foundMovies)
                     }
                   })
                 })
+              // }
                 var unique = this.foundMovies.filter(function(elem, index, self) {
                   return index == self.indexOf(elem);
                 })
                 this.itemsToDisplay = unique;
+                console.log(this.itemsToDisplay)
               }
             });
           })

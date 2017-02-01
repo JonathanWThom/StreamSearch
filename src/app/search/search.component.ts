@@ -80,7 +80,7 @@ export class SearchComponent implements OnInit {
  }
 
  hboActive(){
-   if (this.searchFilter === 'HBO') {
+   if (this.searchFilter === 'HBO NOW') {
      return 'active'
    } else {
      return 'inactive'
