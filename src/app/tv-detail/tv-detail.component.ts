@@ -40,4 +40,10 @@ export class TvDetailComponent implements OnInit {
     })
   }
 
+  addToFavorites(showId: string) {
+    this.us.addToFavoriteMovies(showId, this.user);
+  }
+  removeFromFavorites(showId: string){
+    this.us.removeFromFavorites(showId, this.user);
+  }
 }

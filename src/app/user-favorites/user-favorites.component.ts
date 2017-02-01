@@ -25,6 +25,9 @@ export class UserFavoritesComponent implements OnInit {
       this.user = user;
       this.us.getUserFB(this.user).subscribe(fbUser => {
         this.fbUser = fbUser;
+        if (!fbUser.favoriteMovies) {
+          fbUser.favoriteMovies = [];
+        }
         this.favoriteMovies = this.fbUser.favoriteMovies;
         this.favoriteMovies.forEach(function(movie) {
           that.ms.getMovieDetails(movie.toString()).subscribe(response => {
