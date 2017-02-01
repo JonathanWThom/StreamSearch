@@ -46,14 +46,18 @@ export class SearchResultsComponent implements OnInit {
           this.apiResults.results.forEach(movie => {
             this.ms.getMovieDetails(movie.id).subscribe(y => {
               this.parsedMovies.push(JSON.parse(y['_body']));
-              this.parsedMovies.forEach(movie => {
-                movie.subscription_web_sources.forEach(source => {
-                  if (source.display_name === this.filter) {
-                    console.log('you win');
-                    this.itemsToDisplay.push(movie);
-                  }
+              if (this.filter === '') {
+                this.itemsToDisplay = this.parsedMovies;
+              } else {
+                this.parsedMovies.forEach(movie => {
+                  movie.subscription_web_sources.forEach(source => {
+                    if (source.display_name === this.filter) {
+                      console.log('you win');
+                      this.itemsToDisplay.push(movie);
+                    }
+                  })
                 })
-              })
+              }
             });
           })
         })
