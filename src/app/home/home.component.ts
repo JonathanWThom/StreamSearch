@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     this.ms.getTopMovies().subscribe(x => {
       this.allTopMovies = x;
       this.allTopMovies = this.allTopMovies.results;
-      for(var i=0; i < 4; i++) {
+      for(var i=0; i < 20; i++) {
         this.topMovies.push(this.allTopMovies[i]);
       }
     });

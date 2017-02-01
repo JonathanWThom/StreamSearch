@@ -2,55 +2,38 @@
 
 <div class="wrap">
   <div class="titleSection">
-    <img class="banner"[src]="movieService.backdropPrefix + show?.backdrop_path" alt="{{show?.title}}">
-    <!-- <img class="poster" [src]="show?.poster_large" alt="{{show?.poster}}"> -->
+    <img class="banner"[src]="foundShow?.banner" alt="{{foundShow?.title}}">
+    <img class="poster" [src]="foundShow?.poster" alt="{{foundShow?.title}}">
     <div class="text">
-      <h1 class="title">{{show?.name}}</h1>
-      <p>{{show?.overview}}</p>
+      <h1 class="title">{{foundShow?.title}}</h1>
+      <p>{{foundShow?.overview}}</p>
       <div class="row">
         <div class="col-sm-8">
-          <!-- <p><strong>Rating:</strong> {{movie?.rating}}</p> -->
-          <p><strong>Release Year:</strong> {{show?.first_air-date?.split('-')[0]}}</p>
-          <!-- <p><strong>Directors </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id, 'director')">| <a>{{director?.name}}</a> </span></p> -->
-          <!-- <p><strong>Writers </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id, 'writer')">| <a>{{writer?.name}}</a> </span></p> -->
+          <p><strong>Rating:</strong> {{foundShow?.rating}}</p>
+          <p><strong>Release Year:</strong> {{foundShow?.first_aired.split('-')[0]}}</p>
         </div>
         <div class="col-sm-4">
           <div *ngIf="user" class="userButtons">
-            <button (click)="addToFavorites(show.id)" class="btn btn-md btn-success favoriteButtons" *ngIf="!fbUser.favoriteShows?.includes(show.id)">Add to Favorites</button><br>
-            <button (click)="removeFromFavorites(show.id)" class="btn btn-md btn-danger favoriteButtons" *ngIf="fbUser.favoriteShows?.includes(show.id)">Remove from Favorites</button>
+            <button (click)="addToFavorites()" class="btn btn-md btn-success favoriteButtons" *ngIf="!userFavorite">Add to Favorites</button><br>
+            <button (click)="removeFromFavorites()" class="btn btn-md btn-danger favoriteButtons" *ngIf="userFavorite">Remove from Favorites</button>
           </div>
         </div>
       </div>
 
-      <!-- <div class="streamingServices">
-        <div class="streaming" *ngIf="onNetflix">
-          <a href={{onNetflix}} ><img src='assets/img/netflix-icon.png' alt="Netflix"></a>
-        </div>
-        <div class="streaming" *ngIf="onHulu">
-          <a href={{onHulu}} ><img src='assets/img/hulu-icon.png' alt="Hulu"></a>
-        </div>
-        <div class="streaming" *ngIf="onAmazon">
-          <a href={{onAmazon}} ><img src='assets/img/amazon-icon.png' alt="Amazon"></a>
-        </div>
-        <div class="streaming" *ngIf="onHbo">
-          <a href={{onHbo}} ><img src='assets/img/hbo-go-icon.png' alt="Hbo"></a>
-        </div>
-      </div> -->
-
     </div>
   </div>
-  <!-- <h3 class="starringTitle">Starring Cast</h3>
+  <h3 class="starringTitle">Starring Cast</h3>
   <div class="starring">
-    <div class="topBilled" *ngFor='let actor of actorsImages' (click)=navigateToActorById(actor[2])>
-      <p><a>{{actor[0]}}</a></p>
-      <p>{{actor[3]}}</p>
-      <img src={{actor[1]}}>
+    <div class="topBilled">
+      <!-- <p><a>{{actor[0]}}</a></p> -->
+      <!-- <p>{{actor[3]}}</p> -->
+      <!-- <img src={{actor[1]}}> -->
     </div>
-  </div> -->
-  <!-- <div class="cast">
+  </div>
+  <div class="cast">
     <h5>Cast</h5>
-    <div *ngFor='let castMember of movie?.cast' (click)="navigateToActorById(castMember.id)">
+    <div *ngFor='let castMember of foundShow?.cast' (click)="navigateToActorById(castMember.id)">
       <p><a>{{castMember.name}}</a> - {{castMember.character_name}}</p>
     </div>
-  </div> -->
+  </div>
 </div>

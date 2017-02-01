@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { MovieService } from '../movie.service';
 import { Movie } from '../movie.model';
+import { Show } from '../show.model';
 
 @Component({
   selector: 'app-user-favorites',
@@ -10,51 +12,49 @@ import { Movie } from '../movie.model';
   styleUrls: ['./user-favorites.component.css'],
   providers: [UserService, MovieService]
 })
-export class UserFavoritesComponent implements OnInit {
+export class UserFavoritesComponent implements PointerEventInit {
   // @Input() fbUser: FirebaseListObservable<any[]>;
   user;
   fbUser;
-  favoriteMovies;
-  favoriteShows;
+  favoriteShowIDs;
   movieApiDetails;
+  showApiDetails;
 
-
-  constructor(private us: UserService, private ms: MovieService) {
-    us.checkForUser().subscribe(user => {
-      var that = this;
-      this.user = user;
-      this.us.getUserFB(this.user).subscribe(fbUser => {
-        this.fbUser = fbUser;
-        if (!fbUser.favoriteMovies) {
-          fbUser.favoriteMovies = [];
-        }
-        this.favoriteMovies = this.fbUser.favoriteMovies;
-        this.favoriteMovies.forEach(function(movie) {
-          that.ms.getMovieDetails(movie.toString()).subscribe(response => {
-            that.movieApiDetails = response;
-            that.movieApiDetails = JSON.parse(that.movieApiDetails._body);
-            var res = that.movieApiDetails;
-            var foundMovie = new Movie(res.title, res.id, res.release_year, res.in_theaters, res.release_date, res.rottentomatoes, res.metacritic, res.poster_120x171, res.poster_240x342, res.poster_400x570, res.themoviedb, res.rating);
-            foundMovie.sources = res.subscription_web_sources;
-            foundMovie.overview = res.overview;
-            foundMovie.directors = res.directors;
-            foundMovie.writers = res.writers;
-
-            console.log(foundMovie)
-
-            that.favoriteMovies.push(foundMovie);
-          });
-        })
-      });
-
-    });
+  constructor(private router: Router, private us: UserService, private ms: MovieService) {
   }
 
   ngOnInit() {
+    this.us.checkForUser().subscribe(foundUser => {
+      var that = this;
+      this.user = foundUser;
+      this.us.getUserFB(this.user).subscribe(fbUser => {
+        this.fbUser = fbUser;
+        if (!fbUser.favoriteMovies) {
+          this.fbUser.favoriteMovies = [];
+        }
+
+        if (!fbUser.favoriteShows) {
+          this.favoriteShowIDs = [];
+        }
+      });
+    });
   }
 
-  removeFavorite(movieId: string){
-    this.us.removeFromFavorites(movieId, this.user);
+  removeFavoriteMovies(movie: Movie){
+    console.log(typeof movie);
+    this.us.removeFromFavoriteMovies(movie, this.user);
   }
 
+  removeFavoriteShows(show: Show){
+    console.log(typeof show);
+    this.us.removeFromFavoriteShows(show, this.user);
+  }
+
+  navigateToMovie(movieId: string){
+    this.router.navigate(['movie', movieId]);
+  }
+
+  navigateToShow(showId: string) {
+    this.router.navigate(['show', showId]);
+  }
 }
