@@ -18,6 +18,12 @@ export class ActorDetailComponent implements OnInit {
   credits: Object[] =[];
   role: string;
   newCredits;
+  moviesActedIn= [];
+  moviesDirected= [];
+  moviesWritten= [];
+  moviesProduced= [];
+
+
 
   constructor(private actorService: ActorService, private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -40,8 +46,21 @@ export class ActorDetailComponent implements OnInit {
         var posterPrefix = "https://image.tmdb.org/t/p/w185/";
         this.newCredits = creditResponse;
         this.newCredits = JSON.parse(this.newCredits._body);
-        console.log(this.newCredits);
-
+        console.log(this.newCredits)
+        this.newCredits.cast.forEach(film => {
+          if (film.poster_path !== null ){
+            this.moviesActedIn.push(film)
+          }
+        })
+        this.newCredits.crew.forEach(film => {
+          if(film.job === 'Director' && film.poster_path){
+            this.moviesDirected.push(film)
+          } else if (film.job === 'Screenplay' && film.poster_path){
+            this.moviesWritten.push(film)
+          } else if (film.department === 'Production' && film.poster_path){
+            this.moviesProduced.push(film)
+          }
+        })
 
         // if(this.role === "cast"){
         //   this.credits = newCredits.cast.map(function(res){
