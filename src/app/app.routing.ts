@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { ActorDetailComponent } from './actor-detail/actor-detail.component';
+import { AboutComponent } from './about/about.component';
 
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { LogInComponent } from './log-in/log-in.component';
@@ -32,6 +33,10 @@ const appRoutes: Routes = [
   {
     path: 'person/:id',
     component: ActorDetailComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
