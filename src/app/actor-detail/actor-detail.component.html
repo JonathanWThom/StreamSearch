@@ -1,6 +1,21 @@
 <h1>{{actor?.name}}</h1>
 
-<div *ngFor="let credit of credits" (click)="navigateToMovie(credit?.id, credit?.media_type)">
+<div class="row">
+  <div *ngFor="let credit of newCredits?.cast" class="col-sm-2">
+    <p>{{credit?.title}}</p>
+    <p>Portrayed: {{credit?.character}}</p>
+    <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+  </div>
+</div>
+
+
+<div *ngFor="let credit of newCredits?.crew" class="col-sm-2">
+  <p>{{credit?.title}}</p>
+  <p>{{credit?.job}}<p>
+  <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
+</div>
+
+<!-- <div *ngFor="let credit of credits" (click)="navigateToMovie(credit?.id, credit?.media_type)">
   <p>{{credit?.title}}</p>
   <p *ngIf="role === 'cast'">Portrayed: {{credit?.character}}</p>
   <p *ngIf="role === 'director'">Role: {{credit?.job}}</p>
@@ -10,4 +25,4 @@
   </p>
 
   <img src={{credit?.imageUrl}} alt="" />
-</div>
+</div> -->

@@ -17,6 +17,7 @@ export class ActorDetailComponent implements OnInit {
   newActor;
   credits: Object[] =[];
   role: string;
+  newCredits;
 
   constructor(private actorService: ActorService, private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -37,25 +38,28 @@ export class ActorDetailComponent implements OnInit {
 
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
         var posterPrefix = "https://image.tmdb.org/t/p/w185/";
-        newCredits = creditResponse;
-        newCredits = JSON.parse(newCredits._body);
-        if(this.role === "cast"){
-          this.credits = newCredits.cast.map(function(res){
-          return {'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'character': res.character, 'media_type': res.media_type};
-          });
-        } else if (this.role === "director") {
-          newCredits.crew.forEach(res =>{
-            if(res.job === "Director") {
-              this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
-            }
-          });
-        } else if (this.role === 'writer') {
-          newCredits.crew.forEach(res =>{
-            if(res.job === "Writer") {
-              this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
-            }
-          });
-        }
+        this.newCredits = creditResponse;
+        this.newCredits = JSON.parse(this.newCredits._body);
+        console.log(this.newCredits);
+
+
+        // if(this.role === "cast"){
+        //   this.credits = newCredits.cast.map(function(res){
+        //   return {'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'character': res.character, 'media_type': res.media_type};
+        //   });
+        // } else if (this.role === "director") {
+        //   newCredits.crew.forEach(res =>{
+        //     if(res.job === "Director") {
+        //       this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
+        //     }
+        //   });
+        // } else if (this.role === 'writer') {
+        //   newCredits.crew.forEach(res =>{
+        //     if(res.job === "Writer") {
+        //       this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
+        //     }
+        //   });
+        // }
       })
     })
   }
