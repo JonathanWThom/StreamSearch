@@ -108,7 +108,9 @@ export class ActorDetailComponent implements OnInit {
   }
 
   actorActive() {
-    if (this.selectedRole === 'showMoviesActed' || this.selectedRole === 'showAll') {
+    if (this.moviesActedIn.length === 0) {
+      return 'hidden'
+    } else if (this.selectedRole === 'showMoviesActed' || this.selectedRole === 'showAll') {
       return 'btn btn-success'
     } else {
       return 'btn btn-default'
@@ -116,7 +118,9 @@ export class ActorDetailComponent implements OnInit {
   }
 
   directorActive() {
-    if (this.selectedRole === 'showMoviesDirected' || this.selectedRole === 'showAll') {
+    if (this.moviesDirected.length === 0) {
+      return 'hidden'
+    } else if (this.selectedRole === 'showMoviesDirected' || this.selectedRole === 'showAll') {
       return 'btn btn-success'
     } else {
       return 'btn btn-default'
@@ -124,7 +128,9 @@ export class ActorDetailComponent implements OnInit {
   }
 
   writerActive() {
-    if (this.selectedRole === 'showMoviesWritten' || this.selectedRole === 'showAll') {
+    if (this.moviesWritten.length === 0) {
+      return 'hidden'
+    } else if (this.selectedRole === 'showMoviesWritten' || this.selectedRole === 'showAll') {
       return 'btn btn-success'
     } else {
       return 'btn btn-default'
@@ -132,7 +138,9 @@ export class ActorDetailComponent implements OnInit {
   }
 
   producerActive() {
-    if (this.selectedRole === 'showMoviesProduced' || this.selectedRole === 'showAll') {
+    if (this.moviesProduced.length === 0) {
+      return 'hidden'
+    } else if (this.selectedRole === 'showMoviesProduced' || this.selectedRole === 'showAll') {
       return 'btn btn-success'
     } else {
       return 'btn btn-default'
@@ -141,7 +149,7 @@ export class ActorDetailComponent implements OnInit {
 
   allActive() {
     if (this.selectedRole === "showAll") {
-      return 'btn btn-success'
+      return 'hidden'
     } else {
       return 'btn btn-default'
     }
