@@ -1,0 +1,13 @@
+.sidebar {
+  position: absolute;
+  width: 300px;
+  top: 240px;
+  padding: 20px 40px;
+  background: white;
+  border-radius: 0 10px 0 0;
+  height: 90vh;
+}
+h4 {
+  color: grey;
+  font-weight: 200;
+}
