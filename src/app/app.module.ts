@@ -15,6 +15,7 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 import { UserFavoritesComponent } from './user-favorites/user-favorites.component';
 import { TvDetailComponent } from './tv-detail/tv-detail.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AboutComponent } from './about/about.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -37,7 +38,8 @@ export const firebaseConfig = {
     ActorDetailComponent,
     UserFavoritesComponent,
     TvDetailComponent,
-    SidebarComponent
+    SidebarComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

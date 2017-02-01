@@ -5,7 +5,7 @@ $(document).ready(function() {
   $('.close-menu').click(function() {
     $('.hidden-menu').hide();
   });
-  $('.hidden-menu li').click(function() {
+  $('.hidden-menu').children().click(function() {
     $('.hidden-menu').hide();
   });
 });

@@ -113,28 +113,23 @@ export class UserService {
     })
   }
 
-  removeFromFavoriteMovies(movie: Movie, user): void{
+  removeFromFavoriteMovies(movie: Movie, fbUser): FirebaseObjectObservable<any>{
     var that = this;
     var hasRun: boolean = false;
     console.log(hasRun);
-    this.getUserFB(user).subscribe(fbUser => {
-      if (!fbUser.favoriteMovies) {
-        fbUser.favoriteMovies = [];
+    if (!fbUser.favoriteMovies) {
+      fbUser.favoriteMovies = [];
+    }
+    for (var movieIndex = 0; movieIndex < fbUser.favoriteMovies.length; movieIndex++) {
+      if (fbUser.favoriteMovies[movieIndex].id === movie.id) {
+        fbUser.favoriteMovies.splice(movieIndex, 1);
+        console.log(fbUser.favoriteMovies);
+        that.af.database.object('/users/' + fbUser.$key).update({
+          "favoriteMovies": fbUser.favoriteMovies
+        });
       }
-
-      if (!hasRun) {
-        for (var movieIndex = 0; movieIndex < fbUser.favoriteMovies.length; movieIndex++) {
-          if (fbUser.favoriteMovies[movieIndex].id === movie.id) {
-            fbUser.favoriteMovies.splice(movieIndex, 1);
-            console.log(fbUser.favoriteMovies);
-            that.af.database.object('/users/' + fbUser.$key).update({
-              "favoriteMovies": fbUser.favoriteMovies
-            });
-            hasRun = true
-          }
-        }
-      }
-    })
+    }
+    return that.af.database.object('/users/' + fbUser.$key);
   }
   removeFromFavoriteShows(show: Show, user): void{
     var that = this;
