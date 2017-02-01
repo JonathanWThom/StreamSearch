@@ -25,7 +25,8 @@ export class MovieDetailComponent implements OnInit {
   onItunes: string = null;
 
   user = null;
-  // userFavoriteMovies;
+  userFavorite: boolean;
+
   fbUser: FirebaseObjectObservable<any>;
   constructor(private movieService: MovieService, private actorService: ActorService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
     us.checkForUser().subscribe(user => {
@@ -33,10 +34,17 @@ export class MovieDetailComponent implements OnInit {
       if (this.user) {
         this.fbUser = this.us.getUserFB(this.user);
         this.fbUser.subscribe(fbUser => {
-          // this.userFavoriteMovies = fbUser.favoriteMovies;
+          if (!fbUser.favoriteMovies){
+            fbUser.favoriteMovies = [];
+          }
+          if (fbUser.favoriteMovies && this.movie){
+            this.userFavorite = fbUser.favoriteMovies.includes(this.movie.id);
+            console.log("userFavorite set.");
+          }
+            // return favorites.includes(this.movie.id);
         })
       }
-    });
+    })
   }
 
 
@@ -105,5 +113,9 @@ export class MovieDetailComponent implements OnInit {
 
   addToFavorites(movieId: string) {
     this.us.addToFavoriteMovies(movieId, this.user);
+  }
+  removeFromFavorites(movieId: string){
+    this.us.removeFromFavorites(movieId, this.user);
+    this.userFavorite = false;
   }
 }
