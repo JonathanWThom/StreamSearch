@@ -11,7 +11,7 @@
       <a [class]="netflixActive()" (click)="addFilter('Netflix')">Netflix</a>
       <a [class]="huluActive()" (click)="addFilter('Hulu')">Hulu</a>
       <a [class]="amazonActive()" (click)="addFilter('Amazon Prime')">Amazon</a>
-      <a [class]="hboActive()" (click)="addFilter('HBO')">HBO GO</a>
+      <a [class]="hboActive()" (click)="addFilter('HBO NOW')">HBO GO</a>
     </div>
   </div>
   <input type="text" placeholder="search by {{searchedCategory}}" #search (keyup.enter)="searchTerm(search.value);search.value=''">
