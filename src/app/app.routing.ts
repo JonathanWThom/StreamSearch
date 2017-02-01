@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     component: TvDetailComponent
   },
   {
-    path: 'search/:category/:term',
+    path: 'search/:category/:term/:filter',
     component: SearchResultsComponent
   },
   {

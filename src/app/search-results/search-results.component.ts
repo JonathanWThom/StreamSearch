@@ -14,15 +14,19 @@ export class SearchResultsComponent implements OnInit {
 
   category: string;
   term: string;
+  filter: string;
   itemsToDisplay = [];
   apiResults;
+  parsedMovies = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private ms: MovieService, private as: ActorService) { }
 
   ngOnInit() {
+    this.itemsToDisplay = [];
     this.route.params.forEach((urlParameters) => {
       this.category = urlParameters['category'];
       this.term = urlParameters['term'];
+      this.filter = urlParameters['filter'];
 
       if(this.category === "person"){
         this.as.getActorWithImages(this.term).subscribe(results => {
@@ -30,12 +34,29 @@ export class SearchResultsComponent implements OnInit {
          console.log(this.apiResults)
          this.itemsToDisplay = this.apiResults.results;
         })
-      } else {
+      } else if (this.category === 'show') {
         this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
           this.apiResults = x;
           this.itemsToDisplay = this.apiResults.results;
-
         });
+      } else {
+        this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
+          this.apiResults = x;
+          this.apiResults.results.forEach(movie => {
+            this.ms.getMovieDetails(movie.id).subscribe(y => {
+              this.parsedMovies.push(JSON.parse(y['_body']));
+              this.parsedMovies.forEach(movie => {
+                movie.subscription_web_sources.forEach(source => {
+                  console.log(movie);
+                  if (source.display_name === this.filter) {
+                    console.log('you win');
+                    this.itemsToDisplay.push(movie);
+                  }
+                })
+              })
+            });
+          })
+        })
       }
     });
   }

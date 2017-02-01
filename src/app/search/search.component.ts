@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   searchedCategory: string = 'movie';
+  searchFilter: string = '';
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   searchTerm(term) {
-    this.router.navigate(['search', this.searchedCategory, term])
+    this.router.navigate(['search', this.searchedCategory, term, this.searchFilter])
   }
 
   addCategory(category) {
@@ -44,5 +45,14 @@ export class SearchComponent implements OnInit {
      return 'inactive';
    }
  }
+ addFilter(filter){
+   this.searchFilter = filter
+ }
+
+ netflixActive(){}
+ huluActive(){}
+ amazonActive(){}
+ hboActive(){}
+
 
 }
