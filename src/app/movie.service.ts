@@ -7,6 +7,7 @@ import { Keys } from './api-keys';
 @Injectable()
 export class MovieService {
   backdropPrefix = "https://image.tmdb.org/t/p/w1280/";
+  posterPrefix = "https://image.tmdb.org/t/p/w185/";
 
   constructor(private http: Http) { }
 
@@ -29,7 +30,8 @@ export class MovieService {
   }
 
   getShowDetails(showID: string){
-    return this.http.get("https://api.themoviedb.org/3/tv/" + showID + "?api_key=" + Keys.tmdb + "&language=en-US")
+    return this.http.get("https://api-public.guidebox.com/v2/shows/".concat(showID).concat("/?api_key=").concat(Keys.guidebox));
+    // return this.http.get("https://api.themoviedb.org/3/tv/" + showID + "?api_key=" + Keys.tmdb + "&language=en-US");
   }
 
   getMovieImages(tmdbID: string){
