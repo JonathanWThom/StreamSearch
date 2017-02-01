@@ -48,7 +48,10 @@ export class SearchResultsComponent implements OnInit {
             this.ms.getMovieDetails(movie.id).subscribe(y => {
               this.parsedMovies.push(JSON.parse(y['_body']));
               if (this.filter === '') {
-                this.itemsToDisplay = this.parsedMovies;
+                var unique = this.parsedMovies.filter(function(elem, index, self) {
+                  return index == self.indexOf(elem);
+                })
+                this.itemsToDisplay = unique;
               } else {
                 this.parsedMovies.forEach(movie => {
                   movie.subscription_web_sources.forEach(source => {
