@@ -109,10 +109,10 @@ export class MovieDetailComponent implements OnInit {
   }
 
   navigateToActorById(actorId: string){
-    this.router.navigate(['person', 'cast',actorId]);
+    this.router.navigate(['person',actorId]);
   }
-  getCrewById(crewId:string, crewType){
-    this.router.navigate(['person', crewType, crewId]);
+  getCrewById(crewId:string){
+    this.router.navigate(['person', crewId]);
   }
 
   addToFavorites(): void{

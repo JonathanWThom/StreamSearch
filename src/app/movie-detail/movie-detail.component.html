@@ -11,8 +11,8 @@
         <div class="col-sm-8">
           <p><strong>Rating:</strong> {{movie?.rating}}</p>
           <p><strong>Release Year:</strong> {{movie?.release_year}}</p>
-          <p><strong>Directors </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id, 'director')">| <a>{{director?.name}}</a> </span></p>
-          <p><strong>Writers </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id, 'writer')">| <a>{{writer?.name}}</a> </span></p>
+          <p><strong>Directors </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id)">| <a>{{director?.name}}</a> </span></p>
+          <p><strong>Writers </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id)">| <a>{{writer?.name}}</a> </span></p>
         </div>
         <div class="col-sm-4">
           <div *ngIf="user" class="userButtons">

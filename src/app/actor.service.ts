@@ -14,4 +14,10 @@ export class ActorService {
   getActorCredits(actorTmdbID: string){
     return this.http.get("https://api.themoviedb.org/3/person/".concat(actorTmdbID).concat("/combined_credits?api_key=").concat(Keys.tmdb).concat("&language=en-US"));
   }
+  getActorWithImages(name: string){
+    console.log(name)
+    return this.http.get("http://api-public.guidebox.com/v2/search?api_key=".concat(Keys.guidebox).concat("&type=person&query=").concat(name)).map(res => {
+      return <any[]> res.json();
+    })
+  }
 }

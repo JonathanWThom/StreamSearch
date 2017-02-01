@@ -4,23 +4,22 @@
   <div class="media" *ngFor="let item of itemsToDisplay">
 
       <div *ngIf="category === 'movie'">
-        <img (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
+        <img id={{item.id}} (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
       </div>
 
     <div *ngIf="category === 'show'">
+<<<<<<< HEAD
       <img (click)="goToPage(item.id)" src="{{item.artwork_208x117}}" alt="{{item.title}}">
+=======
+      <img id={{item.id}} (click)="goToPage(item.themoviedb)" src="{{item.artwork_208x117}}" alt="{{item.title}}">
+>>>>>>> master
       <!--do other style-->
     </div>
 
     <div *ngIf="category === 'person'">
-      <div *ngIf="item.images.medium?.url">
-        {{item.name}}
-        <img (click)="goToPage(item.id)" src="{{item.images.medium.url}}" alt="{{item.name}}">
-      </div>
-
-      <div *ngIf="!item.images.small?.url">
-        {{item.name}}
-        <img (click)="goToPage(item.id)" src="https://www.csuniv.edu/_resources/images/faculty-placeholder.png" alt="{{item.name}}">
+      <div *ngIf="item.images.small?.url">
+        <p>{{item.name}}</p>
+        <img (click)="goToPersonPage(item.id)" id={{item.id}} src="{{item.images.small.url}}" alt="{{item.name}}">
       </div>
     </div>
 
