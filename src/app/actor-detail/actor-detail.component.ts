@@ -62,23 +62,6 @@ export class ActorDetailComponent implements OnInit {
           }
         })
 
-        // if(this.role === "cast"){
-        //   this.credits = newCredits.cast.map(function(res){
-        //   return {'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'character': res.character, 'media_type': res.media_type};
-        //   });
-        // } else if (this.role === "director") {
-        //   newCredits.crew.forEach(res =>{
-        //     if(res.job === "Director") {
-        //       this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
-        //     }
-        //   });
-        // } else if (this.role === 'writer') {
-        //   newCredits.crew.forEach(res =>{
-        //     if(res.job === "Writer") {
-        //       this.credits.push({'id': res.id, 'title': res.title, 'imageUrl': posterPrefix.concat(res.poster_path), 'job': res.job, 'media_type': res.media_type});
-        //     }
-        //   });
-        // }
       })
     })
   }
