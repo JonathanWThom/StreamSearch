@@ -30,7 +30,7 @@ const appRoutes: Routes = [
     component: LogInComponent
   },
   {
-    path: 'person/:role/:id',
+    path: 'person/:id',
     component: ActorDetailComponent
   }
 ];
