@@ -25,6 +25,7 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((urlParameters) => {
       this.itemsToDisplay.length = 0;
+      this.foundMovies.length = 0;
       console.log(this.itemsToDisplay);
       this.category = urlParameters['category'];
       this.term = urlParameters['term'];
@@ -53,7 +54,6 @@ export class SearchResultsComponent implements OnInit {
                   movie.subscription_web_sources.forEach(source => {
                     if (source.display_name === this.filter) {
                       this.foundMovies.push(movie);
-                      console.log(movie);
                     }
                   })
                 })
