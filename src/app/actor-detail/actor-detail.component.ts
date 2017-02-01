@@ -32,7 +32,6 @@ export class ActorDetailComponent implements OnInit {
     this.actorService.getActorDetails(personGbID, this.role).subscribe(response => {
       this.newActor = response;
       this.newActor = JSON.parse(this.newActor._body);
-      console.log(this.newActor)
       this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
       actorTmdbID = this.newActor.themoviedb;
 
@@ -67,7 +66,11 @@ export class ActorDetailComponent implements OnInit {
       this.movieService.getMovieByTmdbID(tmdbID).subscribe(response => {
         foundMovie = response;
         foundMovie = JSON.parse(foundMovie._body);
-        this.router.navigate(['movie', foundMovie.id]);
+        if(Object.keys(foundMovie).length === 0){
+          alert('No streaming data available for this film. Try another.')
+        } else {
+          this.router.navigate(['movie', foundMovie.id]);
+        }
       })
     } else if (media_type === "tv" ){
       this.router.navigate(['show', tmdbID]);

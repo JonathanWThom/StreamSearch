@@ -83,17 +83,14 @@ export class MovieDetailComponent implements OnInit {
           this.topBilled = this.movie.cast.splice(0,5);
 
           this.topBilled.forEach(actor => {
+            var characterName = actor.character_name;
             var actorDetails;
             this.actorService.getActorDetails(actor.id, "cast").subscribe(res => {
               actorDetails = res;
               actorDetails = JSON.parse(actorDetails._body);
               let tempActorThing = []
-              tempActorThing.push(actorDetails.name,actorDetails.images['medium']['url'], actorDetails.id)
+              tempActorThing.push(actorDetails.name,actorDetails.images['medium']['url'], actorDetails.id, characterName)
               this.actorsImages.push(tempActorThing)
-
-              // console.log(this.actorsImages)
-              // imagesArray.push  = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
-              // actorTmdbID = this.newActor.themoviedb;
           })
         })
       })
@@ -106,9 +103,7 @@ export class MovieDetailComponent implements OnInit {
     this.router.navigate(['person', crewType, crewId]);
   }
 
-
   addToFavorites(movieId: string) {
     this.us.addToFavoriteMovies(movieId, this.user);
   }
-
 }
