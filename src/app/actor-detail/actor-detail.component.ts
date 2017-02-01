@@ -22,6 +22,11 @@ export class ActorDetailComponent implements OnInit {
   moviesDirected= [];
   moviesWritten= [];
   moviesProduced= [];
+  showMoviesActed: boolean = true;
+  showMoviesDirected: boolean = true;
+  showMoviesWritten: boolean = true;
+  showMoviesProduced: boolean = true;
+
 
 
 
@@ -81,5 +86,29 @@ export class ActorDetailComponent implements OnInit {
     } else if (media_type === "tv" ){
       this.router.navigate(['show', tmdbID]);
     }
+  }
+
+  toggleShow(role) {
+    this.showMoviesActed = false;
+    this.showMoviesDirected = false;
+    this.showMoviesWritten = false;
+    this.showMoviesProduced = false;
+    this[role] = true;
+  }
+
+  actorActive() {
+
+  }
+
+  directorActive() {
+
+  }
+
+  writerActive() {
+
+  }
+
+  producerActive() {
+
   }
 }
