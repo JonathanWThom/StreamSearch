@@ -22,10 +22,10 @@ export class ActorDetailComponent implements OnInit {
   moviesDirected= [];
   moviesWritten= [];
   moviesProduced= [];
-  showMoviesActed: boolean = true;
-  showMoviesDirected: boolean = true;
-  showMoviesWritten: boolean = true;
-  showMoviesProduced: boolean = true;
+  showMoviesActed: boolean = false;
+  showMoviesDirected: boolean = false;
+  showMoviesWritten: boolean = false;
+  showMoviesProduced: boolean = false;
   selectedRole: string = "showAll";
 
 
@@ -47,24 +47,33 @@ export class ActorDetailComponent implements OnInit {
       this.newActor = JSON.parse(this.newActor._body);
       this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
       actorTmdbID = this.newActor.themoviedb;
+      console.log(this.newActor)
 
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
         var posterPrefix = "https://image.tmdb.org/t/p/w185/";
         this.newCredits = creditResponse;
         this.newCredits = JSON.parse(this.newCredits._body);
         console.log(this.newCredits)
+
         this.newCredits.cast.forEach(film => {
           if (film.poster_path !== null ){
             this.moviesActedIn.push(film)
+            this.showMoviesActed = true
+
           }
         })
         this.newCredits.crew.forEach(film => {
           if(film.job === 'Director' && film.poster_path){
             this.moviesDirected.push(film)
+            this.showMoviesDirected = true
           } else if (film.job === 'Screenplay' && film.poster_path){
             this.moviesWritten.push(film)
+            this.showMoviesWritten = true
+
           } else if (film.department === 'Production' && film.poster_path){
             this.moviesProduced.push(film)
+            this.showMoviesProduced = true
+
           }
         })
 

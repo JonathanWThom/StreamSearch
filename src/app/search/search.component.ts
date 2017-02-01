@@ -8,6 +8,8 @@ import { Router, Params, ActivatedRoute } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   searchedCategory: string;
+  searchFilter: string = '';
+  showFilters: boolean = true;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.route.params.forEach((urlParameters) => {
@@ -25,11 +27,16 @@ export class SearchComponent implements OnInit {
   }
 
   searchTerm(term) {
-    this.router.navigate(['search', this.searchedCategory, term])
+    this.router.navigate(['search', this.searchedCategory, term, this.searchFilter])
   }
 
   addCategory(category) {
     this.searchedCategory = category;
+    if (this.searchedCategory === 'movie') {
+      this.showFilters = true;
+    } else {
+      this.showFilters = false;
+    }
  }
 
  movieActive() {
@@ -55,5 +62,41 @@ export class SearchComponent implements OnInit {
      return 'inactive';
    }
  }
+ addFilter(filter){
+   this.searchFilter = filter
+ }
+
+ netflixActive(){
+   if (this.searchFilter === 'Netflix') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
+
+ huluActive(){
+   if (this.searchFilter === 'Hulu') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
+
+ amazonActive(){
+   if (this.searchFilter === 'Amazon Prime') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
+
+ hboActive(){
+   if (this.searchFilter === 'HBO') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
+
 
 }
