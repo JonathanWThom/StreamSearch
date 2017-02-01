@@ -6,7 +6,7 @@
       <a [class]="peopleActive()" (click)="addCategory('person')">People</a>
     </div>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-6" *ngIf="showFilters">
     <div class="filters">
       <a [class]="netflixActive()" (click)="addFilter('Netflix')">Netflix</a>
       <a [class]="huluActive()" (click)="addFilter('Hulu')">Hulu</a>

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit {
   searchedCategory: string = 'movie';
   searchFilter: string = '';
+  showFilters: boolean = true;
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -20,6 +21,11 @@ export class SearchComponent implements OnInit {
 
   addCategory(category) {
     this.searchedCategory = category;
+    if (this.searchedCategory === 'movie') {
+      this.showFilters = true;
+    } else {
+      this.showFilters = false;
+    }
  }
 
  movieActive() {
@@ -49,10 +55,37 @@ export class SearchComponent implements OnInit {
    this.searchFilter = filter
  }
 
- netflixActive(){}
- huluActive(){}
- amazonActive(){}
- hboActive(){}
+ netflixActive(){
+   if (this.searchFilter === 'Netflix') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
+
+ huluActive(){
+   if (this.searchFilter === 'Hulu') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
+
+ amazonActive(){
+   if (this.searchFilter === 'Amazon Prime') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
+
+ hboActive(){
+   if (this.searchFilter === 'HBO') {
+     return 'active'
+   } else {
+     return 'inactive'
+   }
+ }
 
 
 }

@@ -22,7 +22,7 @@ export class SearchResultsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private ms: MovieService, private as: ActorService) { }
 
   ngOnInit() {
-    this.itemsToDisplay = [];
+    console.log(this.itemsToDisplay);
     this.route.params.forEach((urlParameters) => {
       this.category = urlParameters['category'];
       this.term = urlParameters['term'];
@@ -40,6 +40,7 @@ export class SearchResultsComponent implements OnInit {
           this.itemsToDisplay = this.apiResults.results;
         });
       } else {
+        this.itemsToDisplay = [];
         this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
           this.apiResults = x;
           this.apiResults.results.forEach(movie => {
@@ -47,7 +48,6 @@ export class SearchResultsComponent implements OnInit {
               this.parsedMovies.push(JSON.parse(y['_body']));
               this.parsedMovies.forEach(movie => {
                 movie.subscription_web_sources.forEach(source => {
-                  console.log(movie);
                   if (source.display_name === this.filter) {
                     console.log('you win');
                     this.itemsToDisplay.push(movie);
