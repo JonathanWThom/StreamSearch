@@ -89,6 +89,11 @@
 .favoriteButtons{
   width: 170px;
 }
+.favoriteButtons img {
+  max-height: 1.2em;
+  margin-top: -2px;
+  filter: invert(1);
+}
 @media screen and (max-width: 1000px) {
   .text {
     width: 60%;
@@ -119,6 +124,19 @@
   }
   .starringTitle {
     margin-top: 130px;
+  }
+  .overview {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .favoriteButtons{
+    width: auto;
+    font-size: 0.9em;
+  }
+  .userButtons {
+    margin-left: -25px;
   }
 }
 @media screen and (max-width: 715px) {
