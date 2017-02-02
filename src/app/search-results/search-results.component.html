@@ -8,7 +8,7 @@
         <img id={{item.id}} (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
       </div>
     </div>
-    
+
     <div class="showMedia">
       <div *ngIf="category === 'show'">
         <p class="showTitle">{{item.title}}</p>
@@ -17,9 +17,13 @@
       </div>
     </div>
 
-    <div *ngIf="category === 'person'">
-      <div *ngIf="item.images?.small?.url">
-        <p>{{item.name}}</p>
+    <div *ngIf="category === 'person'" [ngSwitch]="item.images?.small?.url">
+      <div class="personMedia" *ngSwitchCase=''>
+        <p class="personName">{{item.name}}</p>
+        <img src="/assets/img/person-placeholder.png">
+      </div>
+      <div class="personMedia" *ngSwitchDefault>
+        <p class="personName">{{item.name}}</p>
         <img (click)="goToPersonPage(item.id)" id={{item.id}} src="{{item.images?.small?.url}}" alt="{{item.name}}">
       </div>
     </div>
