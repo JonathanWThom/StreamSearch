@@ -8,6 +8,18 @@
 .movieMedia {
   margin: 4px;
 }
+.movieMedia:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 15px black;
+}
+.showMedia img:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 15px black;
+}
+.personMedia img:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 15px black;
+}
 .showMedia {
   margin: 10px;
 }
