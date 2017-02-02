@@ -7,7 +7,13 @@
   flex-wrap: wrap;
   position: relative;
 }
-
+.description {
+  background: rgba(255,255,255,1);
+  padding: 40px;
+  border-radius: 10px;
+  max-height: 400px;
+  overflow: auto;
+}
 .movie {
   margin: 20px;
   position: relative;
