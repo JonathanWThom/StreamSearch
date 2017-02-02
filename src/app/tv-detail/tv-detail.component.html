@@ -6,7 +6,7 @@
     <img class="poster" [src]="foundShow?.poster" alt="{{foundShow?.title}}">
     <div class="text">
       <h1 class="title">{{foundShow?.title}}</h1>
-      <p>{{foundShow?.overview}}</p>
+      <p class="overview">{{foundShow?.overview}}</p>
       <div class="row">
         <div class="col-sm-8">
           <p><strong>Rating:</strong> {{foundShow?.rating}}</p>
@@ -24,7 +24,7 @@
 
       <div class="sourceContainer">
         <a class="source" href="" target="_blank" *ngIf="foundShow?.network.toUpperCase().includes('FOX')">
-          <img src="/assets/img/fox-icon.png" alt="Fox Icon">
+          <img src="/assets/img/fox-icon.jpg" alt="Fox Icon">
         </a>
         <a class="source" href="https://www.nbc.com/shows/current" target="_blank" *ngIf="foundShow?.network === 'NBC'">
           <img src="/assets/img/nbc-icon.png" alt="NBC Icon">
@@ -32,7 +32,7 @@
         <a class="source" href="https://www.cbs.com/shows/" target="_blank" *ngIf="foundShow?.network === 'CBS'">
           <img src="/assets/img/cbs-icon.png" alt="CBS Icon">
         </a>
-        <a class="source" href="https://abc.go.com/shows" target="_blank" *ngIf="foundShow?.network === 'ABC'">
+        <a class="source" href="https://abc.go.com/shows" target="_blank" *ngIf="foundShow?.network.toUpperCase().includes('ABC')">
           <img src="/assets/img/abc-icon.png" alt="ABC Icon">
         </a>
         <a class="source" href="https://www.netflix.com/" target="_blank" *ngIf="foundShow?.network === 'Netflix'">
