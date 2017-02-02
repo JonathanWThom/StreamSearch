@@ -1,31 +1,66 @@
-# BlankAndChill
+# _StreamSearch_
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
+#### By _**Levi Bibo, Luke Philips, Erica Nafziger, and Jonathan Thom**_
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### _StreamSearch allows users to find where their favorite movies are streaming, as well as information about TV Shows, Actors, Directors, and Writers. It has a powerful search feature, as well as incorporating user authentication. Once logged in, a user may save movies and shows as 'favorites' to be viewed later._
 
-## Code scaffolding
+## Setup/Installation Requirements
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+_View at: [https://blank-and-chill.firebaseapp.com/](https://blank-and-chill.firebaseapp.com/)_
 
-## Build
+_For developers, from the command line run:_
+```
+git clone https://github.com/lukeephilips/blank-and-chill
+cd blank-and-chill
+npm install
+bower install
+touch src/app/api-key.ts
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+_Then:_
+  1. Get a Guidebox API Key from [https://api.guidebox.com/](https://api.guidebox.com/).
+  2. Get a TMDB API Key from [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
+  3. Create a new Firebase Project at [https://firebase.google.com/](https://firebase.google.com/)
+    - In Database, set rules.read and rules.write both to 'true'
+    - In Authentication, enable Google and Email/Password.
+    - Fetch Firebase Key Info from Overview > Add Firebase to Your Web App
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+_Then, in src/app/api-keys.ts, plug in the fetched keys in the following format:_
+  ```
+  export var Keys = {
+    tmdb:'{Your-TMDB-Key}',
+    guidebox:['{Your-Guidebox-Key}']
 
-## Running end-to-end tests
+  }
+  export var masterFirebaseConfig = {
+    apiKey: "{Your-API-Key}",
+    authDomain: "{Your-Firebase-Domain}",
+    databaseURL: "{Your-Database-URL}",
+    storageBucket: "{Your-Storage-Bucket-URL}",
+    messagingSenderId: "{Your-Message-Sender-Id}"
+  }
+  ```
+_Finally, in the command line, run:_
+  ```
+  ng serve
+  ```
+  _And navigate to localhost:4200_
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+## Known Bugs
 
-## Deploying to GitHub Pages
+1. Users must refresh their account page in order to remove a movie from favorites.
 
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
+## Support and Contact Details
 
-## Further help
+_Find the developers on GitHub: [Levi](https://github.com/levibibo), [Luke](https://github.com/lukeephilips), [Erica](https://github.com/ericanafziger), [Jonathan](https://github.com/jonathanwthom)_
 
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Technologies Used
+
+_Angular 2, TypeScript, SASS, HTML_
+
+### License
+
+*MIT*
+
+Copyright (c) 2016 **_Levi Bibo, Luke Philips, Erica Nafziger, and Jonathan Thom_**
