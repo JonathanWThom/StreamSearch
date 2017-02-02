@@ -8,6 +8,15 @@
 .media {
   margin: 4px;
 }
+.showTitle {
+  width: 205px;
+  margin-bottom: 0;
+  color: rgb(46, 46, 46);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 @media screen and (max-width: 860px) {
   .mediaContainer {
