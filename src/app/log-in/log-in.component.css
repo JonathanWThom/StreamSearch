@@ -1,0 +1,17 @@
+.container {
+  background: rgb(166, 166, 166);
+  text-align: center;
+  margin-top: 20px;
+  padding: 40px;
+  border-radius: 10px;
+}
+.highlight {
+  color: #2b649e;
+  font-family: 'Exo', sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.btn-default {
+  margin: 20px 0;
+}

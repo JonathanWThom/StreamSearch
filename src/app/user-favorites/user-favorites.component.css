@@ -1,4 +1,11 @@
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
+}
 .mediaContainer {
+  margin-right: 10px;
   position: relative;
   margin-bottom: 10px;
 }
@@ -8,18 +15,18 @@ button {
 }
 .sourceContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: absolute;
-  left: 200px;
-  top: 0;
+  left: 0px;
+  bottom: 0;
 }
 .source {
   position: relative;
 }
 .source img {
   margin-bottom: 5px;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
   position: relative;
   left: 10px;

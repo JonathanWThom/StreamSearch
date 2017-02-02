@@ -1,12 +1,13 @@
 <div class="container">
   <div *ngIf="!user">
     <h4>User Log in:</h4>
+    <p>Sign in or make an account to save lists of favorite tv shows and movies.</p>
     <button type="button" class="btn btn-default" md-raised-button (click)="login()"><img style="height: 1.5em"src="assets/img/google-icon.png"> Use My Google Account</button>
   </div>
 
   <div *ngIf="user">
     <button type="button" class="btn btn-default" md-raised-button (click)="logout()">Log Out</button>
-    <h5>You are logged in as {{user?.google.displayName}}</h5>
+    <h4>You are logged in as <span class="highlight">{{user?.google.displayName}}</span></h4>
     <app-user-favorites></app-user-favorites>
   </div>
 </div>
