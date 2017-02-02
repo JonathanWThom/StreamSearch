@@ -10,7 +10,6 @@ export class ActorService {
   constructor(private http: Http) { }
 
   getGBAPIKey(): string{
-    console.log(Math.floor(Math.random() * Keys.guidebox.length));
     return Keys.guidebox[Math.floor(Math.random() * Keys.guidebox.length)];
   }
 
