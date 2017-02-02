@@ -6,25 +6,25 @@
     <img class="poster" [src]="foundShow?.poster" alt="{{foundShow?.title}}">
     <div class="text">
       <h1 class="title">{{foundShow?.title}}</h1>
-      <p>{{foundShow?.overview}}</p>
+      <p class="overview">{{foundShow?.overview}}</p>
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-xs-8">
           <p><strong>Rating:</strong> {{foundShow?.rating}}</p>
           <p><strong>Release Year:</strong> {{foundShow?.first_aired.split('-')[0]}}</p>
           <p *ngIf="show?.air_day_of_week"><strong>Airs On:</strong> {{show?.air_day_of_week}}s at {{show?.air_time}}</p>
           <p *ngIf="!show?.air_day_of_week"><strong>Airs On:</strong> Unknown Day</p>
         </div>
-        <div class="col-sm-4">
+        <div class="col-xs-4">
           <div *ngIf="user" class="userButtons">
-            <button (click)="addToFavorites()" class="btn btn-md btn-success favoriteButtons" *ngIf="!userFavorite">Add to Favorites</button><br>
-            <button (click)="removeFromFavorites()" class="btn btn-md btn-danger favoriteButtons" *ngIf="userFavorite">Remove from Favorites</button>
+            <button (click)="addToFavorites()" class="btn btn-md btn-success favoriteButtons" *ngIf="!userFavorite">Add to <img src="assets/img/heart-icon.png"></button><br>
+            <button (click)="removeFromFavorites()" class="btn btn-md btn-danger favoriteButtons" *ngIf="userFavorite">Remove from <img src="assets/img/heart-icon.png"></button>
           </div>
         </div>
       </div>
 
       <div class="sourceContainer">
         <a class="source" href="" target="_blank" *ngIf="foundShow?.network.toUpperCase().includes('FOX')">
-          <img src="/assets/img/fox-icon.png" alt="Fox Icon">
+          <img src="/assets/img/fox-icon.jpg" alt="Fox Icon">
         </a>
         <a class="source" href="https://www.nbc.com/shows/current" target="_blank" *ngIf="foundShow?.network === 'NBC'">
           <img src="/assets/img/nbc-icon.png" alt="NBC Icon">
@@ -32,7 +32,7 @@
         <a class="source" href="https://www.cbs.com/shows/" target="_blank" *ngIf="foundShow?.network === 'CBS'">
           <img src="/assets/img/cbs-icon.png" alt="CBS Icon">
         </a>
-        <a class="source" href="https://abc.go.com/shows" target="_blank" *ngIf="foundShow?.network === 'ABC'">
+        <a class="source" href="https://abc.go.com/shows" target="_blank" *ngIf="foundShow?.network.toUpperCase().includes('ABC')">
           <img src="/assets/img/abc-icon.png" alt="ABC Icon">
         </a>
         <a class="source" href="https://www.netflix.com/" target="_blank" *ngIf="foundShow?.network === 'Netflix'">
