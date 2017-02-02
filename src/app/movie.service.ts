@@ -11,6 +11,10 @@ export class MovieService {
 
   constructor(private http: Http) { }
 
+  getGBAPIKey(): string{
+    return Keys.guidebox[Math.floor(Math.random() * Keys.guidebox.length)];
+  }
+
   getTopMovies() {
     return this.http.get("https://api.themoviedb.org/3/movie/popular?api_key=" + Keys.tmdb + "&language=en-US&page=1")
     .map(res => {
@@ -19,18 +23,18 @@ export class MovieService {
   }
 
   getResultsByTerm(category, term) {
-    return this.http.get("https://api-public.guidebox.com/v2/search?api_key=" + Keys.guidebox + "&type=" + category + "&query=" + term)
+    return this.http.get("https://api-public.guidebox.com/v2/search?api_key=" + this.getGBAPIKey() + "&type=" + category + "&query=" + term)
     .map(res => {
       return <any[]> res.json();
     });
   }
 
   getMovieDetails(movieID: string){
-    return this.http.get("https://api-public.guidebox.com/v2/movies/".concat(movieID).concat("/?api_key=").concat(Keys.guidebox))
+    return this.http.get("https://api-public.guidebox.com/v2/movies/".concat(movieID).concat("/?api_key=").concat(this.getGBAPIKey()))
   }
 
   getShowDetails(showID: string){
-    return this.http.get("https://api-public.guidebox.com/v2/shows/".concat(showID).concat("/?api_key=").concat(Keys.guidebox));
+    return this.http.get("https://api-public.guidebox.com/v2/shows/".concat(showID).concat("/?api_key=").concat(this.getGBAPIKey()));
     // return this.http.get("https://api.themoviedb.org/3/tv/" + showID + "?api_key=" + Keys.tmdb + "&language=en-US");
   }
 
@@ -39,10 +43,10 @@ export class MovieService {
   }
 
   getMovieByTmdbID(tmdbID: string){
-    return this.http.get("https://api-public.guidebox.com/v2/search?api_key=".concat(Keys.guidebox).concat("&type=movie&field=id&id_type=themoviedb&query=").concat(tmdbID));
+    return this.http.get("https://api-public.guidebox.com/v2/search?api_key=".concat(this.getGBAPIKey()).concat("&type=movie&field=id&id_type=themoviedb&query=").concat(tmdbID));
   }
   getMovieCast(GbId){
-    return this.http.get("https://api-public.guidebox.com/v2/movies/".concat(GbId).concat("?api_key=").concat(Keys.guidebox));
+    return this.http.get("https://api-public.guidebox.com/v2/movies/".concat(GbId).concat("?api_key=").concat(this.getGBAPIKey()));
   }
 
 }
