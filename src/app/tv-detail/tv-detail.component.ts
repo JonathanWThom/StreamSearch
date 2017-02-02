@@ -28,7 +28,6 @@ export class TvDetailComponent implements OnInit {
           }
           if (fbUser.favoriteShows && this.show){
             this.userFavorite = fbUser.favoriteShows.includes(this.foundShow.id);
-            console.log("userFavorite set.");
           }
           // this.userFavoriteMovies = fbUser.favoriteMovies;
         })

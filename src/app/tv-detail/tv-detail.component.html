@@ -11,6 +11,8 @@
         <div class="col-sm-8">
           <p><strong>Rating:</strong> {{foundShow?.rating}}</p>
           <p><strong>Release Year:</strong> {{foundShow?.first_aired.split('-')[0]}}</p>
+          <p *ngIf="show?.air_day_of_week"><strong>Airs On:</strong> {{show?.air_day_of_week}}s at {{show?.air_time}}</p>
+          <p *ngIf="!show?.air_day_of_week"><strong>Airs On:</strong> Unknown Day</p>
         </div>
         <div class="col-sm-4">
           <div *ngIf="user" class="userButtons">
@@ -18,6 +20,33 @@
             <button (click)="removeFromFavorites()" class="btn btn-md btn-danger favoriteButtons" *ngIf="userFavorite">Remove from Favorites</button>
           </div>
         </div>
+      </div>
+
+      <div class="sourceContainer">
+        <a class="source" href="" target="_blank" *ngIf="foundShow?.network.toUpperCase().includes('FOX')">
+          <img src="/assets/img/fox-icon.png" alt="Fox Icon">
+        </a>
+        <a class="source" href="https://www.nbc.com/shows/current" target="_blank" *ngIf="foundShow?.network === 'NBC'">
+          <img src="/assets/img/nbc-icon.png" alt="NBC Icon">
+        </a>
+        <a class="source" href="https://www.cbs.com/shows/" target="_blank" *ngIf="foundShow?.network === 'CBS'">
+          <img src="/assets/img/cbs-icon.png" alt="CBS Icon">
+        </a>
+        <a class="source" href="https://abc.go.com/shows" target="_blank" *ngIf="foundShow?.network === 'ABC'">
+          <img src="/assets/img/abc-icon.png" alt="ABC Icon">
+        </a>
+        <a class="source" href="https://www.netflix.com/" target="_blank" *ngIf="foundShow?.network === 'Netflix'">
+          <img src="/assets/img/netflix-icon.png" alt="Netflix Icon">
+        </a>
+        <a class="source" href="https://play.hbogo.com/" target="_blank" *ngIf="foundShow?.network.toUpperCase().includes('HBO')">
+          <img src="/assets/img/hbo-go-icon.png" alt="HBO Icon">
+        </a>
+        <a class="source" href="https://www.hulu.com/tv" target="_blank" *ngIf="foundShow?.network.toUpperCase().includes('HULU')">
+          <img src="/assets/img/hulu-icon.png" alt="Hulu Icon">
+        </a>
+        <a class="source" href="https://www.amazon.com/Prime-Video/b?node=2676882011" target="_blank" *ngIf="foundShow?.network === 'Amazon'">
+          <img src="/assets/img/amazon-icon.png" alt="Amazon Prime Icon">
+        </a>
       </div>
 
     </div>
