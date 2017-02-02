@@ -52,6 +52,7 @@ export class SearchResultsComponent implements OnInit {
           this.apiResults.results.forEach(movie => {
             this.ms.getMovieDetails(movie.id).subscribe(y => {
               this.parsedMovies.push(JSON.parse(y['_body']));
+              console.log(this.apiResults.results);
               if (this.filter[0] === "" ) {
                 this.unique = this.parsedMovies.filter(function(elem, index, self) {
                   return index == self.indexOf(elem);

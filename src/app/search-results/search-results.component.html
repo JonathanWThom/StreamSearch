@@ -31,6 +31,9 @@
   </div>
 </div>
 
-<div *ngIf="itemsToDisplay?.length === 0" class="mediaContainer">
+<div *ngIf="!apiResults" class="mediaContainer">
+  <h3>Searching for Matches...</h3>
+</div>
+<div *ngIf="itemsToDisplay?.length === 0 && apiResults" class="mediaContainer">
   <h3>There were no results in "{{category}}" that matched your search: "{{term}}"</h3>
 </div>
