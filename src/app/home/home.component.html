@@ -1,7 +1,7 @@
 <app-search></app-search>
 <!-- <app-sidebar></app-sidebar> -->
-<h2>Popular Movies</h2>
 <div class="topMedia">
+  <h2>Popular Movies</h2>
   <div *ngFor="let movie of topMovies" (click)="getMovie(movie.id)">
     <img src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.title}}">
   </div>

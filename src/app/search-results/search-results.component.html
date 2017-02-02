@@ -3,9 +3,9 @@
 
   <div class="media" *ngFor="let item of itemsToDisplay">
 
-      <div *ngIf="category === 'movie'">
-        <img id={{item.id}} (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
-      </div>
+    <div *ngIf="category === 'movie'">
+      <img id={{item.id}} (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
+    </div>
 
     <div *ngIf="category === 'show'">
       <p>{{item.title}}</p>
