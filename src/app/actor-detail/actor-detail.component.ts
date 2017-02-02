@@ -47,13 +47,11 @@ export class ActorDetailComponent implements OnInit {
       this.newActor = JSON.parse(this.newActor._body);
       this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
       actorTmdbID = this.newActor.themoviedb;
-      console.log(this.newActor)
 
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
         var posterPrefix = "https://image.tmdb.org/t/p/w185/";
         this.newCredits = creditResponse;
         this.newCredits = JSON.parse(this.newCredits._body);
-        console.log(this.newCredits)
 
         this.newCredits.cast.forEach(film => {
           if (film.poster_path !== null ){

@@ -30,9 +30,6 @@ export class SearchResultsComponent implements OnInit {
       this.term = urlParameters['term'];
       this.filter = urlParameters['filter'];
 
-      console.log(this.itemsToDisplay);
-
-
       if(this.category === "person"){
         this.as.getActorWithImages(this.term).subscribe(results => {
          this.apiResults = results;
