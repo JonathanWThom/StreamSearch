@@ -3,7 +3,7 @@
   <h1>{{actor?.name}}</h1>
   <div class="row">
     <div class="col-sm-4">
-      <img class="headshot" *ngIf="actor?.images.length !== 0" src={{actor?.images.medium.url}} alt="" />
+      <img class="headshot" *ngIf="actor?.images.length !== 0" src={{actor?.images.medium.url}} alt="{{actor?.name}}">
     </div>
     <div class="col-sm-6">
       <p>{{actor?.description}}</p>
