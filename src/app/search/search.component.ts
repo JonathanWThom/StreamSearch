@@ -13,14 +13,12 @@ export class SearchComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.route.params.forEach((urlParameters) => {
-      console.log(urlParameters);
       if (urlParameters['category']) {
         this.searchedCategory = urlParameters['category'];
       } else {
         this.searchedCategory = 'movie';
       }
     });
-    console.log(this.searchedCategory);
   }
 
   ngOnInit() {
