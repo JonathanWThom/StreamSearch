@@ -33,8 +33,8 @@ export class MovieDetailComponent implements OnInit {
       this.user = user;
 
       if (this.user) {
-        this.fbUser = this.us.getUserFB(this.user);
-        this.fbUser.subscribe(fbUser => {
+        this.us.getUserFB(this.user).subscribe(fbUser => {
+          this.fbUser = fbUser;
           if (!fbUser.favoriteMovies){
             fbUser.favoriteMovies = [];
           }
@@ -44,7 +44,6 @@ export class MovieDetailComponent implements OnInit {
               that.userFavorite = true;
             }
           })
-            // return favorites.includes(this.movie.id);
         })
       }
     })
@@ -120,8 +119,16 @@ export class MovieDetailComponent implements OnInit {
     this.us.addToFavoriteMovies(this.movie, this.user);
   }
 
-  removeFromFavorites(): void{
+  // removeFromFavorites(): void{
+  //   this.userFavorite = false;
+  //   console.log('method called');
+  //   this.us.removeFromFavoriteMovies(this.movie, this.fbUser);
+  // }
+
+  removeFromFavorites(){
     this.userFavorite = false;
-    this.us.removeFromFavoriteMovies(this.movie, this.user);
+    this.us.removeFromFavoriteMovies(this.movie, this.fbUser).subscribe(tempUser => {
+      this.fbUser = tempUser;
+    });
   }
 }
