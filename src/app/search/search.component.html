@@ -14,5 +14,5 @@
       <a [class]="hboActive()" (click)="addFilter('HBO NOW')">HBO GO</a>
     </div>
   </div>
-  <input type="text" placeholder="search by {{searchedCategory}}" #search (keyup.enter)="searchTerm(search.value);search.value=''">
+  <input type="text" placeholder="search by {{searchFilter}} {{searchedCategory}}" #search (keyup.enter)="searchTerm(search.value);search.value=''">
 </div>
