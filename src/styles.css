@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Exo|Fjalla+One|Muli");
 * {
   margin: 0;
   padding: 0;
@@ -26,8 +27,18 @@ body {
   .navbar-default .navbar-header {
     margin-left: 7%; }
     .navbar-default .navbar-header .navbar-brand {
-      font-size: 2.3em;
-      padding-left: 0px; }
+      height: auto;
+      font-size: 2.5em;
+      letter-spacing: 1px;
+      padding-left: 0px;
+      color: #3071b2;
+      font-family: 'Exo', sans-serif; }
+      .navbar-default .navbar-header .navbar-brand .lighten {
+        color: #70a4d8; }
+      .navbar-default .navbar-header .navbar-brand img {
+        display: inline-block;
+        width: 70px;
+        transform: rotate(70deg); }
   .navbar-default .hidden-menu {
     display: none;
     position: absolute;
