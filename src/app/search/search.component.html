@@ -8,11 +8,15 @@
   </div>
   <div class="filtersContainer" *ngIf="showFilters">
     <div class="filters">
-      <a [class]="netflixActive()" (click)="addFilter('Netflix')">Netflix</a>
-      <a [class]="huluActive()" (click)="addFilter('Hulu')">Hulu</a>
-      <a [class]="amazonActive()" (click)="addFilter('Amazon Prime')">Amazon</a>
-      <a [class]="hboActive()" (click)="addFilter('HBO NOW')">HBO GO</a>
+      <a [class]="netflixActive()" (click)="addFilter('Netflix')" (click)="addToSearchFilterArray('Netflix')">Netflix</a>
+      <a [class]="huluActive()" (click)="addFilter('Hulu')" (click)="addToSearchFilterArray('Hulu')">Hulu</a>
+      <a [class]="amazonActive()" (click)="addFilter('Amazon Prime')" (click)="addToSearchFilterArray('Amazon Prime')">Amazon</a>
+      <a [class]="hboActive()" (click)="addFilter('HBO NOW')" (click)="addToSearchFilterArray('HBO NOW')">HBO GO</a>
     </div>
   </div>
+<<<<<<< HEAD
   <input type="text" placeholder="search by {{searchFilter}} {{searchedCategory}}" #search (keyup.enter)="searchTerm(search.value);search.value=''">
+=======
+  <input type="text" placeholder="search by {{searchFilterArray}} {{searchedCategory}}" #search (keyup.enter)="searchTerm(search.value);search.value=''">
+>>>>>>> master
 </div>

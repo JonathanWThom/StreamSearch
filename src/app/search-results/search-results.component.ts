@@ -14,7 +14,7 @@ export class SearchResultsComponent implements OnInit {
 
   category: string;
   term: string;
-  filter: string;
+  filter;
   itemsToDisplay: Object[] =[];
   apiResults;
   parsedMovies = [];
@@ -28,7 +28,10 @@ export class SearchResultsComponent implements OnInit {
     this.route.params.forEach((urlParameters) => {
       this.category = urlParameters['category'];
       this.term = urlParameters['term'];
-      this.filter = urlParameters['filter'];
+
+// changed filter to conveert passed string back into an array
+      this.filter = urlParameters['filter'].split(',');
+
 
       if(this.category === "person"){
         this.as.getActorWithImages(this.term).subscribe(results => {
@@ -49,7 +52,7 @@ export class SearchResultsComponent implements OnInit {
           this.apiResults.results.forEach(movie => {
             this.ms.getMovieDetails(movie.id).subscribe(y => {
               this.parsedMovies.push(JSON.parse(y['_body']));
-              if (this.filter === '') {
+              if (this.filter[0] === "" ) {
                 this.unique = this.parsedMovies.filter(function(elem, index, self) {
                   return index == self.indexOf(elem);
                 })
@@ -57,7 +60,9 @@ export class SearchResultsComponent implements OnInit {
               } else {
                 this.parsedMovies.forEach(movie => {
                   movie.subscription_web_sources.forEach(source => {
-                    if (source.display_name === this.filter) {
+
+// changed function to test each value in filter array
+                    if (this.filter.some(x => x === source.display_name)) {
                       this.foundMovies.push(movie);
                     }
                   })
