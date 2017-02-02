@@ -44,11 +44,9 @@ export class UserFavoritesComponent implements PointerEventInit {
     this.us.removeFromFavoriteMovies(movie, this.fbUser).subscribe(tempUser => {
       this.fbUser = tempUser;
     });
-    console.log(this.fbUser);
   }
 
   removeFavoriteShows(show: Show){
-    console.log(typeof show);
     this.us.removeFromFavoriteShows(show, this.user);
   }
 

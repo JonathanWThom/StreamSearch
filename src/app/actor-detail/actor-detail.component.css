@@ -12,6 +12,11 @@
   position: relative;
   overflow: hidden;
 }
+.movie img {
+  width: 185px;
+  height: 278px;
+  object-fit: cover;
+}
 .movie:hover {
   cursor: pointer;
 }

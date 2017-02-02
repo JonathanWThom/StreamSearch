@@ -1,12 +1,11 @@
 .mediaContainer {
   display: flex;
   flex-wrap: wrap;
-  width: 75%;
+  width: 80%;
   padding: 20px;
-  margin-left: auto;
-  justify-content: flex-end;
+  margin: auto;
+  justify-content: flex-start;
 }
 .media {
   margin-top: 0;
-  margin: 15px;
 }
