@@ -3,10 +3,13 @@
   flex-wrap: wrap;
   width: 768px;
   margin: auto;
-  justify-content: flex-start;
+  justify-content: center;
 }
-.media {
+.movieMedia {
   margin: 4px;
+}
+.showMedia {
+  margin: 10px;
 }
 .showTitle {
   width: 205px;
