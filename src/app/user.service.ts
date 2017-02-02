@@ -12,11 +12,9 @@ export class UserService {
    this.users = af.database.list('/users');
  }
 
- login() {
-  return this.af.auth.login({
-     provider: AuthProviders.Google
-   })
- }
+  login() {
+    return this.af.auth.login();
+  }
 
  logout() {
    return this.af.auth.logout();
