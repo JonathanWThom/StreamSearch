@@ -9,6 +9,7 @@ import { Router, Params, ActivatedRoute } from '@angular/router';
 export class SearchComponent implements OnInit {
   searchedCategory: string;
   searchFilter: string = '';
+  searchFilterArray: string[] =[]
   showFilters: boolean = true;
 
   constructor(private router: Router, private route: ActivatedRoute) {
@@ -25,7 +26,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchTerm(term) {
-    this.router.navigate(['search', this.searchedCategory, term, this.searchFilter])
+    this.router.navigate(['search', this.searchedCategory, term, this.searchFilterArray.join()])
   }
 
   addCategory(category) {
@@ -47,6 +48,9 @@ export class SearchComponent implements OnInit {
 
  tvActive() {
    if (this.searchedCategory === 'show') {
+     this.searchFilter = '';
+     this.searchFilterArray.length = 0;
+
      return 'active';
    } else {
      return 'inactive';
@@ -55,6 +59,9 @@ export class SearchComponent implements OnInit {
 
  peopleActive() {
    if (this.searchedCategory === 'person') {
+     this.searchFilter = '';
+     this.searchFilterArray.length = 0;
+
      return 'active';
    } else {
      return 'inactive';
@@ -67,9 +74,17 @@ export class SearchComponent implements OnInit {
      this.searchFilter = filter
    }
  }
+ addToSearchFilterArray(filter){
+   if (this.searchFilterArray.indexOf(filter)>= 0){
+     this.searchFilterArray.splice(this.searchFilterArray.indexOf(filter), 1)
+   } else {
+   this.searchFilterArray.push(filter)
+  }
+ }
 
+// changed each method to test for presence in the array
  netflixActive(){
-   if (this.searchFilter === 'Netflix') {
+   if (this.searchFilterArray.indexOf('Netflix')>= 0) {
      return 'active'
    } else {
      return 'inactive'
@@ -77,7 +92,7 @@ export class SearchComponent implements OnInit {
  }
 
  huluActive(){
-   if (this.searchFilter === 'Hulu') {
+   if (this.searchFilterArray.indexOf('Hulu')>= 0) {
      return 'active'
    } else {
      return 'inactive'
@@ -85,7 +100,7 @@ export class SearchComponent implements OnInit {
  }
 
  amazonActive(){
-   if (this.searchFilter === 'Amazon Prime') {
+   if (this.searchFilterArray.indexOf('Amazon Prime')>= 0) {
      return 'active'
    } else {
      return 'inactive'
@@ -93,12 +108,10 @@ export class SearchComponent implements OnInit {
  }
 
  hboActive(){
-   if (this.searchFilter === 'HBO NOW') {
+   if (this.searchFilterArray.indexOf('HBO NOW')>= 0) {
      return 'active'
    } else {
      return 'inactive'
    }
  }
-
-
 }

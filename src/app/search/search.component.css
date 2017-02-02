@@ -58,6 +58,10 @@ a:hover {
 .filtersContainer a:hover, .termsContainer a:hover {
   background: grey;
 }
+.filtersContainer .active {
+  background: #2b649e;
+
+}
 .termsContainer a:hover {
   background: none;
   color: #2b649e;
