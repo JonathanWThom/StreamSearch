@@ -92,6 +92,11 @@
 .favoriteButtons{
   width: 170px;
 }
+.favoriteButtons img {
+  max-height: 1.2em;
+  margin-top: -2px;
+  filter: invert(1);
+}
 @media screen and (max-width: 1000px) {
   .text {
     width: 60%;
@@ -107,8 +112,9 @@
   .text {
     width: 90%;
     left: 5%;
+    top: 2%;
     height: auto;
-    max-height: 380px;
+    max-height: 420px;
     margin-left: 0px;
     padding-left: 18%;
   }
@@ -123,8 +129,18 @@
   .starringTitle {
     margin-top: 130px;
   }
+  .overview {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .favoriteButtons{
+    width: auto;
+    font-size: 0.9em;
+  }
 }
-@media screen and (max-width: 715px) {
+@media screen and (max-width: 755px) {
   .text {
     position: relative;
     height: auto;

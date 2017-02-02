@@ -30,9 +30,6 @@ export class SearchResultsComponent implements OnInit {
       this.term = urlParameters['term'];
       this.filter = urlParameters['filter'];
 
-      console.log(this.itemsToDisplay);
-
-
       if(this.category === "person"){
         this.as.getActorWithImages(this.term).subscribe(results => {
          this.apiResults = results;
@@ -46,6 +43,8 @@ export class SearchResultsComponent implements OnInit {
       } else {
 
         this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
+          this.itemsToDisplay.length = 0;
+          this.parsedMovies.length = 0;
           this.apiResults = x;
           this.apiResults.results.forEach(movie => {
             this.ms.getMovieDetails(movie.id).subscribe(y => {
