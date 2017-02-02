@@ -9,6 +9,9 @@
 .topMedia img {
   margin: 10px;
 }
+.topMedia:hover {
+  cursor: pointer;
+}
 h2 {
   margin: auto;
   text-align: center;
