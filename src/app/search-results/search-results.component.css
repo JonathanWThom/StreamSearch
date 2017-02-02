@@ -1,12 +1,24 @@
 .mediaContainer {
   display: flex;
   flex-wrap: wrap;
-  width: 768px;
+  width: 992px;
   margin: auto;
   justify-content: center;
 }
 .movieMedia {
   margin: 4px;
+}
+.movieMedia:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 15px black;
+}
+.showMedia img:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 15px black;
+}
+.personMedia img:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 15px black;
 }
 .showMedia {
   margin: 10px;
@@ -33,6 +45,12 @@
   text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 1000px) {
+  .mediaContainer {
+    width: 768px;
+    margin: auto;
+  }
+}
 @media screen and (max-width: 860px) {
   .mediaContainer {
     width: 640px;

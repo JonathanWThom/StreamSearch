@@ -9,8 +9,9 @@
 .topMedia img {
   margin: 10px;
 }
-.topMedia:hover {
+.topMedia img:hover {
   cursor: pointer;
+  box-shadow: 2px 2px 15px black;
 }
 h2 {
   margin: auto;
