@@ -71,6 +71,7 @@ export class SearchResultsComponent implements OnInit {
                   return index == self.indexOf(elem);
                 })
                 this.itemsToDisplay = this.unique;
+                console.log(this.itemsToDisplay);
                 // this.itemsToDisplay.length = 0;
                 this.foundMovies.length = 0;
                 this.unique = null;
