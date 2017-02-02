@@ -1,5 +1,5 @@
 <app-search></app-search>
-<div class="mediaContainer">
+<div class="mediaContainer" *ngIf="itemsToDisplay?.length > 0">
 
   <div *ngFor="let item of itemsToDisplay">
 
@@ -29,4 +29,8 @@
     </div>
 
   </div>
+</div>
+
+<div *ngIf="itemsToDisplay?.length === 0" class="mediaContainer">
+  <h3>There were no results in "{{category}}" that matched your search: "{{term}}"</h3>
 </div>
