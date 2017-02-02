@@ -18,3 +18,13 @@ h2 {
   max-width: 1000px;
   margin-bottom: 20px;
 }
+@media screen and (max-width: 410px) {
+  .topMedia {
+    display: block
+  }
+  .topMedia img {
+    width: 70%;
+    display: block;
+    margin: 10px auto;
+  }
+}

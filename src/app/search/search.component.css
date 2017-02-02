@@ -52,13 +52,13 @@ a:hover {
   color: rgb(47, 46, 46);
 }
 .termsContainer .active {
-  border-radius: 10px 10px 0 0;
-  background: lightgrey;
+  background: none;
+  color: #2b649e;
 }
 .filtersContainer a:hover, .termsContainer a:hover {
   background: grey;
 }
 .termsContainer a:hover {
-  border-radius: 10px 10px 0 0;
-  background: lightgrey;
+  background: none;
+  color: #2b649e;
 }

@@ -20,7 +20,7 @@
   height: 100%;
 }
 .title {
-  opacity: 1;
+  margin-top: 0;
   z-index: 2;
   color: #444;
 }
