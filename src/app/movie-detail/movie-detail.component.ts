@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MovieService } from '../movie.service';
 import { ActorService } from '../actor.service';
@@ -12,7 +12,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./movie-detail.component.css'],
   providers: [MovieService, UserService, ActorService]
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailComponent implements OnInit, DoCheck {
   movieApiDetails = {};
   movie: Movie;
   topBilled = [];
@@ -27,15 +27,15 @@ export class MovieDetailComponent implements OnInit {
 
   user = null;
   userFavorite: boolean = false;
-  fbUser: FirebaseObjectObservable<any>;
+  fbUser;
 
   constructor(private movieService: MovieService, private actorService: ActorService, private activatedRoute: ActivatedRoute, private router: Router, private af: AngularFire, private us: UserService) {
     us.checkForUser().subscribe(user => {
       this.user = user;
 
       if (this.user) {
-        this.fbUser = this.us.getUserFB(this.user);
-        this.fbUser.subscribe(fbUser => {
+        this.us.getUserFB(this.user).subscribe(fbUser => {
+          this.fbUser = fbUser;
           if (!fbUser.favoriteMovies){
             fbUser.favoriteMovies = [];
           }
@@ -45,12 +45,10 @@ export class MovieDetailComponent implements OnInit {
               that.userFavorite = true;
             }
           })
-            // return favorites.includes(this.movie.id);
         })
       }
     })
   }
-
 
   ngOnInit() {
 
@@ -124,13 +122,22 @@ export class MovieDetailComponent implements OnInit {
             this.actorService.getActorDetails(actor.id, "cast").subscribe(res => {
               actorDetails = res;
               actorDetails = JSON.parse(actorDetails._body);
-              let tempActorThing = []
+              if (!actorDetails.images.medium){
+                actorDetails.images['medium'] = {
+                  'url': '/assets/img/person-placeholder.png'
+                };
+              }
+              let tempActorThing = [];
               tempActorThing.push(actorDetails.name,actorDetails.images['medium']['url'], actorDetails.id, characterName)
-              this.actorsImages.push(tempActorThing)
+              this.actorsImages.push(tempActorThing);
           })
         })
       })
     })
+  }
+
+  ngDoCheck(){
+
   }
 
   navigateToActorById(actorId: string){
@@ -145,8 +152,16 @@ export class MovieDetailComponent implements OnInit {
     this.us.addToFavoriteMovies(this.movie, this.user);
   }
 
-  removeFromFavorites(): void{
+  // removeFromFavorites(): void{
+  //   this.userFavorite = false;
+  //   console.log('method called');
+  //   this.us.removeFromFavoriteMovies(this.movie, this.fbUser);
+  // }
+
+  removeFromFavorites(){
     this.userFavorite = false;
-    this.us.removeFromFavoriteMovies(this.movie, this.user);
+    this.us.removeFromFavoriteMovies(this.movie, this.fbUser).subscribe(tempUser => {
+      this.fbUser = tempUser;
+    });
   }
 }
