@@ -1,11 +1,35 @@
 .mediaContainer {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
-  padding: 20px;
+  width: 768px;
   margin: auto;
   justify-content: flex-start;
 }
 .media {
-  margin-top: 0;
+  margin: 4px;
+}
+
+@media screen and (max-width: 860px) {
+  .mediaContainer {
+    width: 640px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 675px) {
+  .mediaContainer {
+    width: 512px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 520px) {
+  .mediaContainer {
+    width: 384px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 400px) {
+  .mediaContainer {
+    width: 256px;
+    margin: auto;
+  }
 }
