@@ -63,7 +63,11 @@ export class SearchComponent implements OnInit {
    }
  }
  addFilter(filter){
-   this.searchFilter = filter
+   if (this.searchFilter === filter) {
+     this.searchFilter = ''
+   } else {
+     this.searchFilter = filter
+   }
  }
 
  netflixActive(){
