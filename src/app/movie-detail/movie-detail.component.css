@@ -67,8 +67,12 @@
   width: 150px;
   object-fit: cover;
 }
-.actorName {
+.actorName, .actorRole {
   margin: 0;
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .cast {
   margin-top: 10px;
@@ -78,4 +82,62 @@
 }
 .favoriteButtons{
   width: 170px;
+}
+@media screen and (max-width: 1000px) {
+  .text {
+    width: 60%;
+    height: 100%;
+    top: 10%;
+    left: 27%;
+    margin-left: 80px;
+    padding: 30px;
+    overflow: auto;
+  }
+}
+@media screen and (max-width: 910px) {
+  .text {
+    width: 90%;
+    left: 5%;
+    height: auto;
+    max-height: 380px;
+    margin-left: 0px;
+    padding-left: 18%;
+  }
+  .poster {
+    position: absolute;
+    top: 8%;
+    min-height: 150px;
+    z-index: 3;
+    left: 2%;
+    height: 60%;
+  }
+  .starringTitle {
+    margin-top: 130px;
+  }
+}
+@media screen and (max-width: 715px) {
+  .text {
+    position: relative;
+    height: auto;
+    left: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-left: 30px;
+  }
+  .banner {
+    height: 300px;
+  }
+  .poster {
+    position: absolute;
+    top: 20px;
+    height: 250px;
+    z-index: 3;
+    left: 5%;
+  }
+  .starringTitle {
+    margin-top: 20px;
+  }
+  .cast {
+    width: 90%;
+  }
 }
