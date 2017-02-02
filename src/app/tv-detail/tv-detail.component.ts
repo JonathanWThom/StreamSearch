@@ -29,7 +29,6 @@ export class TvDetailComponent implements OnInit {
           if (fbUser.favoriteShows && this.show){
             this.userFavorite = fbUser.favoriteShows.includes(this.foundShow.id);
           }
-          // this.userFavoriteMovies = fbUser.favoriteMovies;
         })
       }
     });
@@ -44,6 +43,7 @@ export class TvDetailComponent implements OnInit {
     this.movieService.getShowDetails(movieID).subscribe(response => {
       this.show = response;
       this.show = JSON.parse(this.show._body);
+      console.log(this.show);
       this.foundShow = new Show(this.show.title, this.show.id, this.show.themoviedb, this.show.overview, this.show.poster, this.show.banner, this.show.rating, this.show.network, this.show.cast, this.show.first_aired);
     })
   }

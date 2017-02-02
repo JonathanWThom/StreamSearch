@@ -17,6 +17,7 @@ export class MovieDetailComponent implements OnInit {
   movie: Movie;
   topBilled = [];
   actorsImages = [];
+  cheapestPurchaseOption = {};
 
   onNetflix: string = null;
   onHulu: string = null;
@@ -86,6 +87,30 @@ export class MovieDetailComponent implements OnInit {
         this.movieApiDetails['images'] = response;
         this.movieApiDetails['images'] = JSON.parse(this.movieApiDetails['images']._body);
         this.movie.backdrop = this.movieService.backdropPrefix + this.movieApiDetails['images'].backdrop_path;
+        this.movieApiDetails['details']['purchase_web_sources'].forEach(purchaseSource => {
+          purchaseSource['formats'].forEach(format => {
+            if (Object.keys(this.cheapestPurchaseOption).length === 0) {
+              console.log(this.cheapestPurchaseOption)
+              this.cheapestPurchaseOption = {
+                'source': purchaseSource['display_name'],
+                'price': parseFloat(format.price),
+                'link': purchaseSource['link']
+
+              }
+              console.log(purchaseSource)
+
+            }
+            else if (parseFloat(format.price) < this.cheapestPurchaseOption['price']) {
+              this.cheapestPurchaseOption = {
+                'source': purchaseSource['display_name'],
+                'price': parseFloat(format.price),
+                'link': purchaseSource['link']
+              }
+              console.log(this.cheapestPurchaseOption)
+            }
+          })
+        })
+
       })
       this.movieService.getMovieCast(movieID).subscribe(res => {
           this.movieApiDetails['cast'] = response;
