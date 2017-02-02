@@ -16,10 +16,6 @@ input {
 input:focus {
   outline: none;
 }
-.terms {
-  margin-left: 7%;
-  margin-bottom: 5px;
-}
 a {
   padding-right: 15px;
   color: grey;
@@ -27,7 +23,7 @@ a {
 }
 .active {
   color: #2b649e;
-  font-weight: 500;
+  background: grey;
 }
 .inactive {
   color: bold;
@@ -36,4 +32,33 @@ a:hover {
   cursor: pointer;
   text-decoration: none;
   color: grey;
+}
+.filtersContainer {
+  background: rgb(47, 46, 46);
+  padding: 10px;
+  padding-left: 7%;
+}
+.termsContainer {
+  padding: 10px;
+  padding-left: 7%;
+}
+.filtersContainer a, .termsContainer a {
+  color: white;
+  padding: 12px;
+  margin-left: -4px;
+  transition: background ease-in-out 200ms;
+}
+.termsContainer a {
+  color: rgb(47, 46, 46);
+}
+.termsContainer .active {
+  border-radius: 10px 10px 0 0;
+  background: lightgrey;
+}
+.filtersContainer a:hover, .termsContainer a:hover {
+  background: grey;
+}
+.termsContainer a:hover {
+  border-radius: 10px 10px 0 0;
+  background: lightgrey;
 }

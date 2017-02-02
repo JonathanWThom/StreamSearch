@@ -64,7 +64,7 @@ export class SearchComponent implements OnInit {
  }
  addFilter(filter){
    if (this.searchFilter === filter) {
-     this.searchFilter = ''
+     this.searchFilter = '';
    } else {
      this.searchFilter = filter
    }
