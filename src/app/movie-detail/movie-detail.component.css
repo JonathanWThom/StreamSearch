@@ -67,6 +67,9 @@
   width: 150px;
   object-fit: cover;
 }
+.actorName {
+  margin: 0;
+}
 .cast {
   margin-top: 10px;
   margin-left: 5%;
