@@ -1,11 +1,59 @@
 .mediaContainer {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
-  padding: 20px;
+  width: 768px;
   margin: auto;
-  justify-content: flex-start;
+  justify-content: center;
 }
-.media {
-  margin-top: 0;
+.movieMedia {
+  margin: 4px;
+}
+.showMedia {
+  margin: 10px;
+}
+.personMedia {
+  margin: 4px;
+}
+.showTitle {
+  width: 205px;
+  margin-bottom: 0;
+  color: rgb(46, 46, 46);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.personName {
+  width: 130px;
+  margin-bottom: 0;
+  color: rgb(46, 46, 46);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 860px) {
+  .mediaContainer {
+    width: 640px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 675px) {
+  .mediaContainer {
+    width: 512px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 520px) {
+  .mediaContainer {
+    width: 384px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 400px) {
+  .mediaContainer {
+    width: 256px;
+    margin: auto;
+  }
 }

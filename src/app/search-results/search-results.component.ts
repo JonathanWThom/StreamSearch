@@ -28,8 +28,10 @@ export class SearchResultsComponent implements OnInit {
     this.route.params.forEach((urlParameters) => {
       this.category = urlParameters['category'];
       this.term = urlParameters['term'];
+
 // changed filter to conveert passed string back into an array
       this.filter = urlParameters['filter'].split(',');
+
 
       if(this.category === "person"){
         this.as.getActorWithImages(this.term).subscribe(results => {

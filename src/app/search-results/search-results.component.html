@@ -1,21 +1,29 @@
 <app-search></app-search>
 <div class="mediaContainer">
 
-  <div class="media" *ngFor="let item of itemsToDisplay">
+  <div *ngFor="let item of itemsToDisplay">
 
-    <div *ngIf="category === 'movie'">
-      <img id={{item.id}} (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
+    <div class="movieMedia">
+      <div *ngIf="category === 'movie'">
+        <img id={{item.id}} (click)="goToPage(item.id)" src="{{item.poster_120x171}}" alt="{{item.title}}">
+      </div>
     </div>
 
-    <div *ngIf="category === 'show'">
-      <p>{{item.title}}</p>
-      <img (click)="goToPage(item.id)" src="{{item.artwork_208x117}}" alt="{{item.title}}">
-      <!--do other style-->
+    <div class="showMedia">
+      <div *ngIf="category === 'show'">
+        <p class="showTitle">{{item.title}}</p>
+        <img (click)="goToPage(item.id)" src="{{item.artwork_208x117}}" alt="{{item.title}}">
+        <!--do other style-->
+      </div>
     </div>
 
-    <div *ngIf="category === 'person'">
-      <div *ngIf="item.images?.small?.url">
-        <p>{{item.name}}</p>
+    <div *ngIf="category === 'person'" [ngSwitch]="item.images?.small?.url">
+      <div class="personMedia" *ngSwitchCase=''>
+        <p class="personName">{{item.name}}</p>
+        <img src="/assets/img/person-placeholder.png">
+      </div>
+      <div class="personMedia" *ngSwitchDefault>
+        <p class="personName">{{item.name}}</p>
         <img (click)="goToPersonPage(item.id)" id={{item.id}} src="{{item.images?.small?.url}}" alt="{{item.name}}">
       </div>
     </div>
