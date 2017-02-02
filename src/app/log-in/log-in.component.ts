@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { AngularFire, AuthProviders } from 'angularfire2';
 import { UserService } from '../user.service';
 
@@ -9,9 +9,12 @@ import { UserService } from '../user.service';
   providers: [UserService]
 })
 export class LogInComponent implements OnInit {
-user = null;
-fbUser;
+  user = null;
+  fbUser;
+  emailForm: boolean;
+
   constructor(public af: AngularFire, private us: UserService) {
+    this.emailForm = false;
     us.checkForUser().subscribe(user => {
       this.user = user;
       this.fbUser = this.us.getUserFB(this.user);
@@ -21,6 +24,10 @@ fbUser;
   ngOnInit() {
   }
 
+  toggleEmail(){
+    this.emailForm = !this.emailForm;
+  }
+
   login() {
     this.us.login().then(promise => {
       this.us.findOrMakeUser(this.user);
@@ -28,7 +35,7 @@ fbUser;
   }
 
   logout() {
-    this.us.logout();
     this.user = null;
+    this.us.logout();
   }
 }
