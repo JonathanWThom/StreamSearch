@@ -88,14 +88,12 @@ export class MovieDetailComponent implements OnInit, DoCheck {
         this.movieApiDetails['details']['purchase_web_sources'].forEach(purchaseSource => {
           purchaseSource['formats'].forEach(format => {
             if (Object.keys(this.cheapestPurchaseOption).length === 0) {
-              console.log(this.cheapestPurchaseOption)
               this.cheapestPurchaseOption = {
                 'source': purchaseSource['display_name'],
                 'price': parseFloat(format.price),
                 'link': purchaseSource['link']
 
               }
-              console.log(purchaseSource)
 
             }
             else if (parseFloat(format.price) < this.cheapestPurchaseOption['price']) {
@@ -104,7 +102,6 @@ export class MovieDetailComponent implements OnInit, DoCheck {
                 'price': parseFloat(format.price),
                 'link': purchaseSource['link']
               }
-              console.log(this.cheapestPurchaseOption)
             }
           })
         })
