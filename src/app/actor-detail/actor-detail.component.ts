@@ -56,8 +56,8 @@ export class ActorDetailComponent implements OnInit {
         this.newCredits.cast.forEach(film => {
           if (film.poster_path !== null ){
             this.moviesActedIn.push(film)
+            this.moviesActedIn = this.moviesActedIn.sort(this.compare);
             this.showMoviesActed = true
-
           }
         })
         this.newCredits.crew.forEach(film => {
@@ -78,6 +78,15 @@ export class ActorDetailComponent implements OnInit {
       })
     })
   }
+
+  compare (a,b) {
+    if (a.release_date.split('-').join('') > b.release_date.split('-').join(''))
+      return -1;
+    if (a.release_date.split('-').join('') < b.release_date.split('-').join(''))
+      return 1;
+    return 0;
+  }
+
 
   navigateToMovie(tmdbID: string, media_type): void{
     if(media_type === "movie") {
